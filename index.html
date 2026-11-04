@@ -1,397 +1,411 @@
+
 <!DOCTYPE html>
 <html lang="en">
- <head>
+<head>
   <meta charset="utf-8"/>
-  <meta content="width=device-width,initial-scale=1" name="viewport"/>
-  <meta content="#f8f4eb" name="theme-color"/>
-  <title>
-   Precious Diedemise · A curious little corner
-  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#f8f4eb"/>
+  <title>Precious Diedemise · A curious little corner</title>
   <link href="style.css" rel="stylesheet"/>
- </head>
- <body>
-  <header class="header">
-   <div class="shell header-in">
-    <a class="brand" href="#home">
-     Precious
-     <em>
-      Diedemise.
-     </em>
-    </a>
-    <button aria-controls="nav" aria-expanded="false" class="menu" onclick="toggleNav()">
-     Menu ☰
-    </button>
-    <nav class="nav" id="nav">
-     <a href="#work">
-      Work
-     </a>
-     <a href="#rabbit-hole">
-      My Rabbit Hole
-     </a>
-     <a href="#about">
-      About
-     </a>
-     <a href="Diedemise_Precious_Resume.pdf" rel="noopener" target="_blank">
-      Résumé
-     </a>
-     <a href="#contact">
-      Contact
-     </a>
-    </nav>
-   </div>
-  </header>
-  <main>
-   <section class="shell hero" id="home">
-    <div>
-     <div class="eyebrow">
-      Hi there, I'm Precious. Welcome in.
-     </div>
-     <h1>
-      Curiosity didn't kill this cat.
-      <em>
-       It gave her another project.
-      </em>
-     </h1>
-     <p class="intro">
-      Welcome to my little corner of research, analysis, strategy, and occasionally building something from scratch. It all starts with a question I’m too curious to leave unanswered.
-     </p>
-     <div class="cta-line">
-      <a class="secondary" href="#work">
-       Explore my work
-       <span>
-        ↗
-       </span>
-      </a>
-      <a class="secondary" href="#about">
-       Get to know me
-      </a>
-     </div>
-    </div>
-    <div aria-hidden="true" class="hero-art">
-     <div class="pale">
-     </div>
-     <div class="medium">
-     </div>
-     <div class="large">
-     </div>
-     <div class="line">
-     </div>
-     <div class="line two">
-     </div>
-     <div class="stem">
-     </div>
-     <i class="leaf l1">
-     </i>
-     <i class="leaf l2">
-     </i>
-     <i class="leaf l3">
-     </i>
-     <i class="leaf l4">
-     </i>
-     <i class="leaf l5">
-     </i>
-     <i class="leaf l6">
-     </i>
-    </div>
-   </section>
-   <section class="shell sect" id="work">
-    <div class="sect-head">
-     <div>
-      <div class="eyebrow">
-       A little of what I've been exploring
-      </div>
-      <h2>
-       Selected work
-       <span style="color:var(--rust)">
-        .
-       </span>
-      </h2>
-      <p class="section-note">
-       Different questions, different approaches. Here's where curiosity led me.
-      </p>
-     </div>
-     <button class="all-link" onclick="showAll()">
-      See the full collection ↗
-     </button>
-    </div>
-    <div class="cards">
-     <button class="project" onclick="openCase('finance')">
-      <div aria-hidden="true" class="project-art finance">
-       <i class="sun">
-       </i>
-       <i class="bar b1">
-       </i>
-       <i class="bar b2">
-       </i>
-       <i class="bar b3">
-       </i>
-       <i class="curve">
-       </i>
-      </div>
-      <div class="project-body">
-       <span class="tag">
-        Business strategy · Finance
-       </span>
-       <h3>
-        What can a turnaround teach us?
-       </h3>
-       <p>
-        A closer look at two very different paths through the cybersecurity industry.
-       </p>
-       <div class="project-bottom">
-        <span>
-         Financial comparison
-        </span>
-        <span class="circle-arrow">
-         ↗
-        </span>
-       </div>
-      </div>
-     </button>
-     <button class="project" onclick="openCase('churn')">
-      <div aria-hidden="true" class="project-art churn">
-       <i class="orbit">
-       </i>
-       <i class="orbit two">
-       </i>
-       <i class="dot d1">
-       </i>
-       <i class="dot d2">
-       </i>
-       <i class="dot d3">
-       </i>
-       <i class="dot d4">
-       </i>
-      </div>
-      <div class="project-body">
-       <span class="tag">
-        Data · Business analytics
-       </span>
-       <h3>
-        Why do customers leave?
-       </h3>
-       <p>
-        Using data to explore customer behavior and ask better retention questions.
-       </p>
-       <div class="project-bottom">
-        <span>
-         Python rebuild planned
-        </span>
-        <span class="circle-arrow">
-         ↗
-        </span>
-       </div>
-      </div>
-     </button>
-     <button class="project" onclick="openCase('cani')">
-      <div aria-hidden="true" class="project-art product-art">
-       <div class="phone">
-        <div class="stripe">
-        </div>
-        <div class="stripe">
-        </div>
-        <div class="stripe">
-        </div>
-        <div class="stripe">
-        </div>
-       </div>
-      </div>
-      <div class="project-body">
-       <span class="tag">
-        Product · Problem-solving
-       </span>
-       <h3>
-        Can I? And what happens if I do?
-       </h3>
-       <p>
-        Building a tool to help students think through everyday money decisions.
-       </p>
-       <div class="project-bottom">
-        <span>
-         Independent product
-        </span>
-        <span class="circle-arrow">
-         ↗
-        </span>
-       </div>
-      </div>
-     </button>
-    </div>
-    <div class="other-work">
-     <span class="pill">
-      Also in the works:
-     </span>
-     <button class="pill" onclick="openCase('micro')">
-      Micro-risks ↗
-     </button>
-     <button class="pill" onclick="openCase('chamber')">
-      Stakeholder mapping ↗
-     </button>
-     <button class="pill" onclick="openCase('iss')">
-      Operations research ↗
-     </button>
-    </div>
-   </section>
-   <section class="rabbit-hole-section" id="rabbit-hole">
-  <div class="shell">
-    <p class="section-tag">The Rabbit Hole</p>
-    <h2>Questions I could not leave alone.</h2>
-    <p class="section-intro">
-      Curious deep-dives into products, companies, ideas, and moments that shaped how we live, work, and think.
-    </p>
+</head>
 
-    <div class="rabbit-grid">
-      <a href="rabbit-hole/2go.html" class="rabbit-card">
-        <img src="what-happened-to-2go.png" alt="What Happened to 2go cover" class="rabbit-card-image" />
-        <div class="rabbit-card-content">
-          <p class="rabbit-card-label">Technology · Business · Nostalgia</p>
-          <h3>What Happened to 2go?</h3>
-          <p>
-            From chat rooms and GoCredits to a surprisingly active platform in 2026.
-            Did 2go fail to evolve, or was it simply built for a different time?
-          </p>
-          <span class="rabbit-read-more">Read story →</span>
-        </div>
+<body>
+  <header class="header">
+    <div class="shell header-in">
+      <a class="brand" href="#home">
+        Precious <em>Diedemise.</em>
       </a>
+
+      <button class="menu" aria-controls="nav"
+        aria-expanded="false" onclick="toggleNav()">
+        Menu ☰
+      </button>
+
+      <nav class="nav" id="nav">
+        <a href="#work">Work</a>
+        <a href="#rabbit-hole">My Rabbit Hole</a>
+        <a href="#about">About</a>
+        <a href="Diedemise_Precious_Resume.pdf"
+          rel="noopener" target="_blank">Résumé</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-  </div>
-</section>
-    <div class="shell sect">
-     <div class="eyebrow">
-      A few thoughts along the way
-     </div>
-     <div class="sect-head">
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <section class="shell hero" id="home">
       <div>
-       <h2>
-        My Rabbit Hole
-        <span style="color:var(--rust)">
-         .
-        </span>
-       </h2>
-       <p class="rabbit-intro">
-        For the questions, observations, and occasional overthinking that don't quite fit into a project.
-       </p>
+        <div class="eyebrow">
+          Hi there, I'm Precious. Welcome in.
+        </div>
+
+        <h1>
+          Curiosity didn't kill this cat.
+          <em>It gave her another project.</em>
+        </h1>
+
+        <p class="intro">
+          Welcome to my little corner of research,
+          analysis, strategy, and occasionally building
+          something from scratch. It all starts with a
+          question I’m too curious to leave unanswered.
+        </p>
+
+        <div class="cta-line">
+          <a class="secondary" href="#work">
+            Explore my work <span>↗</span>
+          </a>
+          <a class="secondary" href="#about">
+            Get to know me
+          </a>
+        </div>
       </div>
-     </div>
-     <div class="rabbit-grid">
-      <button class="rabbit-card" onclick="openBlog('time')">
-       <span class="rabbit-tag">
-        Reflections · Writing
-       </span>
-       <h3>
-        If Time Could Leave Reviews
-       </h3>
-       <p>
-        A reflection on humanity, the world we are building, and the possibility of doing better.
-       </p>
-       <span class="pill">
-        Draft preview ↗
-       </span>
-      </button>
-      <button class="rabbit-card" onclick="openBlog('notes')">
-       <span class="rabbit-tag">
-        Notes · Ideas
-       </span>
-       <h3>
-        Notes from a curious mind
-       </h3>
-       <p>
-        A place for the questions that start small, take unexpected turns, and sometimes become projects.
-       </p>
-       <span class="pill">
-        Coming soon ↗
-       </span>
-      </button>
-     </div>
-    </div>
-   </section>
-   <div class="about-wrap" id="about">
-    <section class="shell about">
-     <div>
-      <div class="eyebrow">
-       A little about me
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="pale"></div>
+        <div class="medium"></div>
+        <div class="large"></div>
+        <div class="line"></div>
+        <div class="line two"></div>
+        <div class="stem"></div>
+        <i class="leaf l1"></i>
+        <i class="leaf l2"></i>
+        <i class="leaf l3"></i>
+        <i class="leaf l4"></i>
+        <i class="leaf l5"></i>
+        <i class="leaf l6"></i>
       </div>
-      <h2>
-       Numbers, people, ideas. I like connecting the dots.
-      </h2>
-      <p class="about-copy">
-       I'm drawn to the questions behind how things work, from business decisions to everyday problems. My background in mathematics and my MBA studies bring different ways of looking at the same question. This space is where they meet.
-      </p>
-     </div>
-     <div class="aside">
-      “Some questions are too interesting to leave unanswered.”
-     </div>
     </section>
-   </div>
-   <section class="shell contact" id="contact">
-    <div class="eyebrow">
-     Thanks for stopping by
-    </div>
-    <h2>
-     Let’s connect.
-    </h2>
-    <p>
-     You can reach me by email, view my résumé, or connect with me on LinkedIn.
-    </p>
-    <div class="cta-line" style="justify-content:center">
-     <a class="secondary" href="mailto:pdiedemise@gmail.com">
-      Email me ↗
-     </a>
-     <a class="secondary" href="https://www.linkedin.com/in/precious-diedemise/" rel="noopener" target="_blank">
-      LinkedIn ↗
-     </a>
-     <a class="secondary" href="Diedemise_Precious_Resume.pdf" rel="noopener" target="_blank">
-      View résumé ↗
-     </a>
-    </div>
-   </section>
-  </main>
-  <footer class="footer">
-   <div class="shell">
-    <span>
-     © 2026 Precious Diedemise · Made with curiosity.
-    </span>
-    <span>
-     Strategy · Analysis · Ideas worth exploring
-    </span>
-   </div>
-  </footer>
-  <div aria-labelledby="dialogTitle" aria-modal="true" class="overlay" id="overlay" onclick="if(event.target===this)closeDialog()" role="dialog">
-   <div class="dialog">
-    <div class="dialog-top">
-     <div>
-      <div class="eyebrow" id="dialogTag">
+
+    <!-- SELECTED WORK -->
+    <section class="shell sect" id="work">
+      <div class="sect-head">
+        <div>
+          <div class="eyebrow">
+            A little of what I've been exploring
+          </div>
+
+          <h2>
+            Selected work
+            <span style="color:var(--rust)">.</span>
+          </h2>
+
+          <p class="section-note">
+            Different questions, different approaches.
+            Here's where curiosity led me.
+          </p>
+        </div>
+
+        <button class="all-link" onclick="showAll()">
+          See the full collection ↗
+        </button>
       </div>
-      <h2 id="dialogTitle">
-      </h2>
-     </div>
-     <button aria-label="Close" class="close" onclick="closeDialog()">
-      ×
-     </button>
+
+      <div class="cards">
+
+        <button class="project" onclick="openCase('finance')">
+          <div class="project-art finance" aria-hidden="true">
+            <i class="sun"></i>
+            <i class="bar b1"></i>
+            <i class="bar b2"></i>
+            <i class="bar b3"></i>
+            <i class="curve"></i>
+          </div>
+
+          <div class="project-body">
+            <span class="tag">Business strategy · Finance</span>
+            <h3>What can a turnaround teach us?</h3>
+            <p>
+              A closer look at two very different paths
+              through the cybersecurity industry.
+            </p>
+            <div class="project-bottom">
+              <span>Financial comparison</span>
+              <span class="circle-arrow">↗</span>
+            </div>
+          </div>
+        </button>
+
+        <button class="project" onclick="openCase('churn')">
+          <div class="project-art churn" aria-hidden="true">
+            <i class="orbit"></i>
+            <i class="orbit two"></i>
+            <i class="dot d1"></i>
+            <i class="dot d2"></i>
+            <i class="dot d3"></i>
+            <i class="dot d4"></i>
+          </div>
+
+          <div class="project-body">
+            <span class="tag">Data · Business analytics</span>
+            <h3>Why do customers leave?</h3>
+            <p>
+              Using data to explore customer behavior
+              and ask better retention questions.
+            </p>
+            <div class="project-bottom">
+              <span>Python rebuild planned</span>
+              <span class="circle-arrow">↗</span>
+            </div>
+          </div>
+        </button>
+
+        <button class="project" onclick="openCase('cani')">
+          <div class="project-art product-art" aria-hidden="true">
+            <div class="phone">
+              <div class="stripe"></div>
+              <div class="stripe"></div>
+              <div class="stripe"></div>
+              <div class="stripe"></div>
+            </div>
+          </div>
+
+          <div class="project-body">
+            <span class="tag">Product · Problem-solving</span>
+            <h3>Can I? And what happens if I do?</h3>
+            <p>
+              Building a tool to help students think
+              through everyday money decisions.
+            </p>
+            <div class="project-bottom">
+              <span>Independent product</span>
+              <span class="circle-arrow">↗</span>
+            </div>
+          </div>
+        </button>
+
+      </div>
+
+      <div class="other-work">
+        <span class="pill">Also in the works:</span>
+
+        <button class="pill" onclick="openCase('micro')">
+          Micro-risks ↗
+        </button>
+
+        <button class="pill" onclick="openCase('chamber')">
+          Stakeholder mapping ↗
+        </button>
+
+        <button class="pill" onclick="openCase('iss')">
+          Operations research ↗
+        </button>
+      </div>
+    </section>
+
+    <!-- MY RABBIT HOLE -->
+    <section class="shell sect" id="rabbit-hole">
+
+      <div class="eyebrow">
+        A few thoughts along the way
+      </div>
+
+      <div class="sect-head">
+        <div>
+          <h2>
+            My Rabbit Hole
+            <span style="color:var(--rust)">.</span>
+          </h2>
+
+          <p class="rabbit-intro">
+            For the questions, observations, and
+            occasional overthinking that don't quite
+            fit into a project.
+          </p>
+        </div>
+      </div>
+
+      <div class="rabbit-grid">
+
+        <!-- 2GO ARTICLE -->
+        <a href="rabbit-hole/2go.html"
+           class="rabbit-card"
+           style="display:block; text-decoration:none; color:inherit;">
+
+          <img
+            src="what-happened-to-2go.png"
+            alt="What Happened to 2go?"
+            style="width:100%; height:180px; object-fit:cover; object-position:center; border-radius:10px; display:block; margin-bottom:16px;"
+          />
+
+          <span class="rabbit-tag">
+            Technology · Business · Nostalgia
+          </span>
+
+          <h3>What Happened to 2go?</h3>
+
+          <p>
+            From chat rooms and GoCredits to a
+            surprisingly active platform in 2026.
+            Did 2go fail to evolve, or was it
+            simply built for a different time?
+          </p>
+
+          <span class="pill">Read story ↗</span>
+        </a>
+
+        <!-- REFLECTION -->
+        <button class="rabbit-card"
+          onclick="openBlog('time')">
+
+          <span class="rabbit-tag">
+            Reflections · Writing
+          </span>
+
+          <h3>If Time Could Leave Reviews</h3>
+
+          <p>
+            A reflection on humanity, the world
+            we are building, and the possibility
+            of doing better.
+          </p>
+
+          <span class="pill">Draft preview ↗</span>
+        </button>
+
+        <!-- NOTES -->
+        <button class="rabbit-card"
+          onclick="openBlog('notes')">
+
+          <span class="rabbit-tag">
+            Notes · Ideas
+          </span>
+
+          <h3>Notes from a curious mind</h3>
+
+          <p>
+            A place for the questions that start small,
+            take unexpected turns, and sometimes
+            become projects.
+          </p>
+
+          <span class="pill">Coming soon ↗</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <div class="about-wrap" id="about">
+      <section class="shell about">
+        <div>
+          <div class="eyebrow">
+            A little about me
+          </div>
+
+          <h2>
+            Numbers, people, ideas.
+            I like connecting the dots.
+          </h2>
+
+          <p class="about-copy">
+            I'm drawn to the questions behind how things work,
+            from business decisions to everyday problems.
+            My background in mathematics and my MBA studies
+            bring different ways of looking at the same question.
+            This space is where they meet.
+          </p>
+        </div>
+
+        <div class="aside">
+          “Some questions are too interesting to leave unanswered.”
+        </div>
+      </section>
     </div>
-    <p class="dialog-lead" id="dialogLead">
-    </p>
-    <div class="details">
-     <div class="detail">
-      <strong>
-       The question
-      </strong>
-      <p id="dialogQuestion">
+
+    <!-- CONTACT -->
+    <section class="shell contact" id="contact">
+
+      <div class="eyebrow">
+        Thanks for stopping by
+      </div>
+
+      <h2>Let’s connect.</h2>
+
+      <p>
+        You can reach me by email, view my résumé,
+        or connect with me on LinkedIn.
       </p>
-     </div>
-     <div class="detail">
-      <strong>
-       What this work shows
-      </strong>
-      <p id="dialogSkill">
-      </p>
-     </div>
+
+      <div class="cta-line" style="justify-content:center">
+        <a class="secondary"
+          href="mailto:pdiedemise@gmail.com">
+          Email me ↗
+        </a>
+
+        <a class="secondary"
+          href="https://www.linkedin.com/in/precious-diedemise/"
+          rel="noopener" target="_blank">
+          LinkedIn ↗
+        </a>
+
+        <a class="secondary"
+          href="Diedemise_Precious_Resume.pdf"
+          rel="noopener" target="_blank">
+          View résumé ↗
+        </a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="shell">
+      <span>
+        © 2026 Precious Diedemise · Made with curiosity.
+      </span>
+
+      <span>
+        Strategy · Analysis · Ideas worth exploring
+      </span>
     </div>
-    <p class="notice" id="dialogNotice">
-    </p>
-   </div>
+  </footer>
+
+  <!-- EXISTING DIALOG -->
+  <div
+    class="overlay"
+    id="overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="dialogTitle"
+    onclick="if(event.target===this)closeDialog()">
+
+    <div class="dialog">
+
+      <div class="dialog-top">
+        <div>
+          <div class="eyebrow" id="dialogTag"></div>
+          <h2 id="dialogTitle"></h2>
+        </div>
+
+        <button class="close"
+          aria-label="Close"
+          onclick="closeDialog()">×</button>
+      </div>
+
+      <p class="dialog-lead" id="dialogLead"></p>
+
+      <div class="details">
+        <div class="detail">
+          <strong>The question</strong>
+          <p id="dialogQuestion"></p>
+        </div>
+
+        <div class="detail">
+          <strong>What this work shows</strong>
+          <p id="dialogSkill"></p>
+        </div>
+      </div>
+
+      <p class="notice" id="dialogNotice"></p>
+
+    </div>
   </div>
-  <script src="script.js">
-  </script>
- </body>
+
+  <script src="script.js"></script>
+</body>
 </html>
