@@ -672,3 +672,107 @@ button:focus-visible,a:focus-visible {
 .rabbit-card {
   min-height:185px}
 }
+.rabbit-hole-section {
+  padding: 4rem 1.5rem;
+}
+
+.section-tag {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+  opacity: 0.75;
+}
+
+.section-intro {
+  max-width: 700px;
+  margin-bottom: 2rem;
+}
+
+.rabbit-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.rabbit-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rabbit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.rabbit-card-image {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+.rabbit-card-content {
+  padding: 1.25rem;
+}
+
+.rabbit-card-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+
+.rabbit-card h3 {
+  margin: 0 0 0.75rem;
+}
+
+.rabbit-read-more {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
+
+.article-page {
+  padding: 2rem 1.5rem 4rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 2rem;
+  text-decoration: none;
+}
+
+.rabbit-article {
+  max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.article-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+
+.article-cover {
+  width: 100%;
+  border-radius: 16px;
+  margin: 1.5rem 0 2rem;
+  display: block;
+}
+
+.rabbit-article h1 {
+  margin-bottom: 1rem;
+}
+
+.rabbit-article h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
