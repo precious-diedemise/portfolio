@@ -2,222 +2,1463 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f8f4eb">
-  <meta name="description" content="How Can I? evolved from a decision-comparison idea into an evolving student finance tool. A product development case study by Precious Diedemise.">
-  <title>Can I? | Behind the Product · Precious Diedemise</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    :root{--cream:#f8f4eb;--paper:#fffdf7;--ink:#302e28;--muted:#6b665d;--rust:#aa593e;--deep:#82432f;--olive:#667052;--line:#dfd9cb;--sage:#e8e9da;--tan:#f0e3d2}
-    .ci-page{max-width:1060px;margin:auto;padding:0 30px 80px}
-    .ci-hero{padding:68px 0 54px;border-bottom:1px solid var(--line)}
-    .ci-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);font-weight:700}
-    .ci-hero h1,.ci-section h2{font-family:'DM Serif Display',Georgia,serif;font-weight:400;letter-spacing:-1.2px}
-    .ci-hero h1{font-size:clamp(45px,6vw,78px);line-height:1.1;margin:14px 0 24px}
-    .ci-hero h1 em{font-style:normal;color:var(--rust)}
-    .ci-lead{font-size:clamp(17px,2vw,21px);max-width:740px;color:#565047;line-height:1.65;margin:0 0 23px}
-    .ci-status{display:inline-flex;align-items:center;gap:8px;background:#e6e8d9;padding:7px 13px;border-radius:100px;color:#4d5c40;font-size:12px;font-weight:700}
-    .ci-status:before{content:'';display:block;width:7px;height:7px;border-radius:50%;background:var(--olive)}
-    .ci-note{color:var(--muted);font-size:12px;max-width:780px;margin:20px 0 0}
-    .ci-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
-    .ci-link{display:inline-flex;align-items:center;justify-content:center;padding:12px 19px;border:1px solid var(--rust);border-radius:9px;color:var(--deep);font-size:13px;font-weight:700;text-decoration:none}
-    .ci-link:hover{background:#f0e6d7}
-    .ci-section{padding:55px 0 18px}
-    .ci-count{font-size:11px;letter-spacing:.14em;color:var(--olive);text-transform:uppercase;font-weight:700}
-    .ci-section h2{font-size:clamp(31px,4vw,46px);margin:8px 0 14px}
-    .ci-copy{max-width:720px;color:#625c53;line-height:1.75;font-size:15px}
-    .ci-journey{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
-    .ci-stage,.ci-tile{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:23px}
-    .ci-stage{position:relative;min-height:190px}
-    .ci-stage .ci-digit{font:400 32px 'DM Serif Display',Georgia,serif;color:var(--rust)}
-    .ci-stage h3{font-size:16px;margin:9px 0 7px}
-    .ci-stage p{font-size:13px;color:var(--muted);margin:0}
-    .ci-tile h3{font-size:16px;margin:4px 0 8px}
-    .ci-tile p{font-size:13px;color:var(--muted);margin:0;line-height:1.65}
-    .ci-stage:not(:last-child):after{content:'→';position:absolute;right:-15px;top:44%;font-size:23px;color:var(--rust);z-index:1}
-    .ci-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:20px}
-    .ci-eyeline{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive)}
-    .ci-feedback{margin-top:22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-    .ci-feedback details{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:19px 21px}
-    .ci-feedback summary{font-weight:700;font-size:14px;cursor:pointer;list-style-position:outside}
-    .ci-feedback details p{font-size:13px;color:var(--muted);margin:13px 0 3px;line-height:1.65}
-    .ci-feedback strong{color:var(--ink)}
-    .ci-next{display:flex;flex-wrap:wrap;gap:9px;margin-top:19px}
-    .ci-chip{background:#ede8dc;padding:10px 15px;border-radius:100px;font-size:12px;color:#5f594e}
-    .ci-disclaimer{margin-top:21px;padding:20px 23px;background:#ebecdf;border-radius:12px;font-size:13px;color:#525a4b;line-height:1.7}
-    .ci-footer{padding:30px 0;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    @media(max-width:720px){.ci-page{padding:0 20px 50px}.ci-journey,.ci-grid,.ci-feedback{grid-template-columns:1fr}.ci-stage:not(:last-child):after{content:'↓';right:auto;left:50%;top:auto;bottom:-19px}.ci-hero{padding:46px 0}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8f4eb">
+<meta name="description" content="The product development journey behind Can I?, a student-focused financial decision tool.">
+<title>Can I? | Behind the Product · Precious Diedemise</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+
+<style>
+:root {
+  --cream:#f8f4eb;
+  --paper:#fffdf7;
+  --ink:#302e28;
+  --muted:#6b665d;
+  --rust:#aa593e;
+  --deep:#82432f;
+  --olive:#667052;
+  --line:#dfd9cb;
+  --sage:#e8e9da;
+  --tan:#f0e3d2;
+}
+* { box-sizing:border-box }
+html { scroll-behavior:smooth }
+body {
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font:15px/1.65 'DM Sans',Arial,sans-serif;
+}
+button,input { font:inherit }
+a { color:inherit;text-decoration:none }
+button { cursor:pointer }
+a:focus-visible,button:focus-visible,
+input:focus-visible,summary:focus-visible {
+  outline:3px solid var(--rust);
+  outline-offset:3px;
+}
+.ci-shell {
+  max-width:1180px;
+  margin:auto;
+  padding:0 32px;
+}
+
+/* HEADER */
+.ci-header {
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(248,244,235,.95);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.ci-header-in {
+  height:73px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.ci-brand {
+  font:400 24px 'DM Serif Display',Georgia,serif;
+  letter-spacing:-.5px;
+}
+.ci-brand em {
+  font-style:normal;
+  color:var(--rust);
+}
+.ci-header-links {
+  display:flex;
+  gap:24px;
+  font-size:12px;
+  font-weight:700;
+}
+.ci-header-links a:hover { color:var(--rust) }
+
+.ci-kicker,.ci-label {
+  font-size:11px;
+  letter-spacing:.17em;
+  font-weight:700;
+  text-transform:uppercase;
+  color:var(--olive);
+}
+.ci-label {
+  letter-spacing:.12em;
+  font-size:10px;
+}
+
+/* HERO */
+.ci-hero {
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:65px;
+  align-items:center;
+  padding:83px 0 66px;
+}
+.ci-hero h1 {
+  font:400 clamp(54px,6vw,82px)/1.05
+       'DM Serif Display',Georgia,serif;
+  letter-spacing:-1.9px;
+  margin:20px 0 22px;
+}
+.ci-hero h1 em {
+  color:var(--rust);
+  font-style:normal;
+}
+.ci-lead {
+  color:#575046;
+  max-width:700px;
+  font-size:19px;
+  line-height:1.72;
+  margin:0 0 22px;
+}
+.ci-status {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 12px;
+  border-radius:100px;
+  background:#e3e8d8;
+  color:#3e583e;
+  font-size:11px;
+  font-weight:700;
+}
+.ci-status:before {
+  content:'';
+  height:7px;
+  width:7px;
+  border-radius:50%;
+  background:#63845e;
+}
+.ci-context {
+  font-size:12px;
+  color:var(--muted);
+  margin:17px 0 0;
+  max-width:670px;
+}
+.ci-hero-actions {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:24px 0 0;
+}
+.ci-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 17px;
+  border:1px solid var(--rust);
+  border-radius:9px;
+  background:transparent;
+  color:var(--deep);
+  font-size:12px;
+  font-weight:700;
+}
+.ci-button:hover { background:#f1e7da }
+.ci-button.filled {
+  background:var(--rust);
+  color:white;
+}
+.ci-button.filled:hover { background:var(--deep) }
+
+/* ABSTRACT HERO ART */
+.ci-hero-art {
+  background:#e3e8da;
+  border:1px solid #d5ddcd;
+  border-radius:23px;
+  min-height:345px;
+  padding:25px 25px 29px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  overflow:hidden;
+  position:relative;
+}
+.ci-hero-art:before {
+  content:'';
+  position:absolute;
+  border-radius:50%;
+  width:330px;
+  height:330px;
+  border:1px solid #899b84;
+  right:-175px;
+  top:-185px;
+  box-shadow:
+    0 0 0 33px #8da08622,
+    0 0 0 76px #8da08612;
+}
+.ci-art-word {
+  font:400 91px/1 'DM Serif Display',Georgia,serif;
+  color:#466049;
+  position:relative;
+  letter-spacing:-3px;
+}
+.ci-art-rule {
+  border-top:1px solid #abb9a6;
+  margin:15px 0;
+  position:relative;
+}
+.ci-art-step {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  position:relative;
+  color:#3b4b3a;
+  font-size:13px;
+  font-weight:700;
+  padding:8px 0;
+}
+.ci-art-step span {
+  display:grid;
+  place-items:center;
+  background:#bd795b;
+  color:white;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  font-size:11px;
+}
+.ci-art-step:last-child span {
+  background:#778b69;
+}
+
+/* PAGE NAVIGATION */
+.ci-anchor-nav {
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:15px 0;
+  font-size:12px;
+  font-weight:700;
+  color:#617156;
+}
+.ci-anchor-nav a:hover { color:var(--rust) }
+
+.ci-facts {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-bottom:1px solid var(--line);
+}
+.ci-fact {
+  padding:24px 20px 25px 0;
+  margin:20px 0;
+  border-right:1px solid var(--line);
+}
+.ci-fact:not(:first-child) { padding-left:27px }
+.ci-fact:last-child { border:0 }
+.ci-fact strong {
+  display:block;
+  font:400 30px/1.23 'DM Serif Display',Georgia,serif;
+  margin:9px 0 7px;
+}
+.ci-fact p {
+  font-size:12px;
+  color:var(--muted);
+  margin:0;
+}
+
+/* SHARED SECTIONS */
+.ci-section {
+  padding:76px 0 0;
+  scroll-margin-top:110px;
+}
+.ci-section h2 {
+  font:400 clamp(35px,4vw,50px)/1.12
+       'DM Serif Display',Georgia,serif;
+  letter-spacing:-.7px;
+  margin:9px 0 12px;
+}
+.ci-section-lead {
+  color:var(--muted);
+  font-size:14px;
+  max-width:765px;
+  margin:0 0 24px;
+}
+
+/* PRODUCT EVOLUTION */
+.ci-flow {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:15px;
+}
+.ci-flow-card {
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:23px;
+  position:relative;
+  min-height:190px;
+}
+.ci-flow-card:after {
+  content:'→';
+  font:500 27px 'DM Sans',sans-serif;
+  position:absolute;
+  right:-17px;
+  top:45%;
+  z-index:1;
+  color:var(--rust);
+}
+.ci-flow-card:last-child:after { display:none }
+.ci-flow-index {
+  font:400 33px 'DM Serif Display',Georgia,serif;
+  color:var(--rust);
+}
+.ci-flow-card h3 {
+  font:400 24px/1.2 'DM Serif Display',Georgia,serif;
+  margin:10px 0 9px;
+}
+.ci-flow-card p {
+  margin:0;
+  font-size:13px;
+  color:var(--muted);
+}
+.ci-insight {
+  background:#e9ebdf;
+  border-left:3px solid var(--olive);
+  padding:18px 22px;
+  margin-top:18px;
+  border-radius:0 11px 11px 0;
+  font-size:14px;
+  color:#455346;
+}
+
+/* INTERACTIVE WALKTHROUGH */
+.ci-lab {
+  display:grid;
+  grid-template-columns:minmax(295px,.87fr) minmax(0,1.13fr);
+  gap:17px;
+  align-items:start;
+}
+.ci-panel {
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:19px;
+  padding:24px;
+  min-width:0;
+}
+.ci-panel-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:18px;
+}
+.ci-panel-head h3 {
+  font:400 25px 'DM Serif Display',Georgia,serif;
+  margin:0;
+}
+.ci-small {
+  color:var(--muted);
+  font-size:11px;
+}
+.ci-input-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.ci-field {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  min-width:0;
+}
+.ci-field label {
+  font-size:11px;
+  color:#5c6455;
+  font-weight:700;
+}
+.ci-field input {
+  border:1px solid #d9d2c5;
+  border-radius:9px;
+  min-height:45px;
+  padding:10px 12px;
+  background:#fdfbf6;
+  color:var(--ink);
+  width:100%;
+  font-size:14px;
+}
+.ci-input-full { grid-column:1 / -1 }
+.ci-subnote {
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.55;
+  margin:12px 0 0;
+}
+.ci-input-actions {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+.ci-quiet-button {
+  padding:8px 11px;
+  border:1px solid #d4c9b9;
+  background:#f5f0e7;
+  color:#5a584b;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:700;
+}
+.ci-quiet-button:hover { background:#ebe5d8 }
+
+.ci-budget {
+  background:#e8eade;
+  border-radius:14px;
+  padding:21px;
+  margin-bottom:17px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:10px;
+}
+.ci-budget strong {
+  font:400 36px/1 'DM Serif Display',Georgia,serif;
+  display:block;
+  margin:6px 0;
+}
+.ci-budget .ci-lbl {
+  font-size:10px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#5f6e57;
+  font-weight:700;
+}
+.ci-budget .ci-excluded {
+  font-size:11px;
+  color:#687463;
+  max-width:165px;
+  text-align:right;
+}
+.ci-budget-warning {
+  font-size:12px;
+  color:#963e27;
+  display:none;
+  margin:-7px 0 15px;
+}
+.ci-choice-label {
+  font-size:11px;
+  font-weight:700;
+  color:var(--olive);
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.ci-options {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.ci-plan {
+  border:1px solid #dad3c5;
+  background:#faf7f0;
+  text-align:left;
+  border-radius:11px;
+  padding:14px 11px;
+  min-height:130px;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  color:var(--ink);
+  transition:border-color .15s,transform .15s;
+}
+.ci-plan:hover { transform:translateY(-2px) }
+.ci-plan[aria-pressed="true"] {
+  border:2px solid var(--rust);
+  padding:13px 10px;
+  background:#f4ebe0;
+}
+.ci-plan-title {
+  font-size:12px;
+  font-weight:700;
+  line-height:1.3;
+}
+.ci-plan-sub {
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.4;
+}
+.ci-plan-mini {
+  margin-top:auto;
+  display:flex;
+  height:5px;
+  border-radius:7px;
+  overflow:hidden;
+  background:#ddd8c9;
+}
+.ci-plan-mini span:first-child { background:#ad6147 }
+.ci-plan-mini span:last-child { background:#7d916a }
+
+.ci-result {
+  border-top:1px solid var(--line);
+  margin-top:19px;
+  padding-top:19px;
+}
+.ci-result-title {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.ci-result-title strong {
+  font:400 24px 'DM Serif Display',Georgia,serif;
+}
+.ci-result-title span {
+  font-size:11px;
+  color:var(--olive);
+  font-weight:700;
+}
+.ci-allocation-bar {
+  height:15px;
+  border-radius:50px;
+  background:#e3ddd2;
+  display:flex;
+  overflow:hidden;
+  margin:13px 0 14px;
+}
+.ci-debt-seg { background:#ad6147 }
+.ci-save-seg { background:#7d916a }
+.ci-legend {
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+  font-size:12px;
+  color:#5c574e;
+}
+.ci-legend i {
+  display:inline-block;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  margin-right:6px;
+}
+.ci-legend strong { color:var(--ink) }
+.ci-result-foot {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+.ci-result-foot div {
+  background:#f4f1e8;
+  border-radius:9px;
+  padding:12px;
+}
+.ci-result-foot span {
+  font-size:10px;
+  color:var(--muted);
+  display:block;
+}
+.ci-result-foot b { font-size:17px }
+.ci-lab-note {
+  font-size:11px;
+  color:var(--muted);
+  margin-top:14px;
+  line-height:1.6;
+}
+
+/* PRODUCT DECISION LOG */
+.ci-decisions {
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--paper);
+  overflow:hidden;
+}
+.ci-decision-row {
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  border-top:1px solid var(--line);
+}
+.ci-decision-row:first-child { border:0 }
+.ci-decision-row > div { padding:19px 23px }
+.ci-decision-row > div:first-child { background:#f3efe5 }
+.ci-decision-row h3 {
+  margin:5px 0 6px;
+  font-size:15px;
+}
+.ci-decision-row p {
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* USER FEEDBACK */
+.ci-feedback {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+}
+.ci-feedback details {
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:20px 22px;
+}
+.ci-feedback summary {
+  cursor:pointer;
+  font-weight:700;
+  font-size:14px;
+}
+.ci-feedback p {
+  font-size:13px;
+  color:var(--muted);
+  margin:12px 0 4px;
+}
+.ci-feedback .ci-response {
+  border-top:1px solid var(--line);
+  padding-top:11px;
+  margin-top:12px;
+}
+.ci-feedback em {
+  font-style:normal;
+  font-weight:700;
+  color:var(--olive);
+  font-size:11px;
+}
+
+/* NEXT STEPS */
+.ci-next {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:13px;
+}
+.ci-next article {
+  border-top:3px solid var(--rust);
+  border-left:1px solid var(--line);
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:var(--paper);
+  padding:22px;
+  border-radius:0 0 12px 12px;
+}
+.ci-next h3 {
+  font-size:15px;
+  margin:5px 0 9px;
+}
+.ci-next p {
+  font-size:12px;
+  color:var(--muted);
+  margin:0;
+}
+.ci-limit {
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:45px;
+  margin-top:62px;
+  padding:27px 0 50px;
+}
+.ci-limit strong { font-size:13px }
+.ci-limit p {
+  font-size:12px;
+  color:var(--muted);
+}
+.ci-footer {
+  border-top:1px solid var(--line);
+  padding:24px 0 33px;
+  color:var(--muted);
+  font-size:12px;
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  justify-content:space-between;
+}
+
+/* RESPONSIVE */
+@media(max-width:990px) {
+  .ci-hero { grid-template-columns:1fr }
+  .ci-hero-art { display:none }
+  .ci-lab { grid-template-columns:1fr }
+}
+@media(max-width:700px) {
+  .ci-shell { padding:0 19px }
+  .ci-header-in { height:65px }
+  .ci-brand { font-size:20px }
+  .ci-header-links { gap:12px;font-size:11px }
+  .ci-hero { padding:50px 0 40px }
+  .ci-hero h1 { font-size:53px }
+  .ci-lead { font-size:16px }
+  .ci-anchor-nav { gap:13px }
+  .ci-fact {
+    padding:15px 8px 15px 0;
+    margin:12px 0;
+  }
+  .ci-fact:not(:first-child) { padding-left:10px }
+  .ci-fact strong { font-size:23px }
+  .ci-fact p { font-size:10px }
+  .ci-section { padding-top:57px }
+  .ci-flow,.ci-feedback,.ci-next,.ci-limit {
+    grid-template-columns:1fr;
+  }
+  .ci-flow-card:after {
+    content:'↓';
+    top:auto;
+    bottom:-19px;
+    right:48%;
+  }
+  .ci-decision-row { grid-template-columns:1fr }
+  .ci-decision-row > div { padding:14px 19px }
+  .ci-panel { padding:18px }
+  .ci-options { grid-template-columns:1fr }
+  .ci-plan { min-height:84px }
+  .ci-budget { grid-template-columns:1fr }
+  .ci-budget strong { font-size:30px }
+  .ci-budget .ci-excluded {
+    text-align:left;
+    max-width:none;
+  }
+}
+</style>
 </head>
+
 <body>
-  <header class="header">
-    <div class="shell header-in">
-      <a class="brand" href="index.html#home">Precious <em>Diedemise.</em></a>
-      <nav class="nav" style="display:flex;gap:20px">
-        <a href="index.html#work">← Back to work</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
+
+<!-- HEADER -->
+<header class="ci-header">
+  <div class="ci-shell ci-header-in">
+    <a class="ci-brand" href="index.html#home">
+      Precious <em>Diedemise.</em>
+    </a>
+    <nav class="ci-header-links">
+      <a href="index.html#work">← All work</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="ci-shell">
+
+<!-- HERO -->
+<section class="ci-hero">
+  <div>
+    <div class="ci-kicker">
+      Independent product · Financial decision-making
     </div>
-  </header>
 
-  <main class="ci-page">
-    <section class="ci-hero">
-      <div class="ci-eyebrow">Product development · Financial decision-making</div>
-      <h1>Can I? <em>Before I do.</em></h1>
-      <p class="ci-lead">
-        I wanted a way to see how a money decision might play out before
-        actually making it. That question became Can I?, a student-focused
-        tool that is still taking shape.
-      </p>
-      <span class="ci-status">Work in progress · Actively evolving</span>
-      <div class="ci-actions">
-        <a class="ci-link" href="https://can-i-phi.vercel.app/"
-           target="_blank" rel="noopener noreferrer">Try the current prototype ↗</a>
-        <a class="ci-link" href="#evolution">See the process ↓</a>
-      </div>
-      <p class="ci-note">
-        An independent product project. This page documents decisions and
-        ongoing testing, not a finished commercial product.
-      </p>
-    </section>
+    <h1>Can I? <em>Before I do.</em></h1>
 
-    <section class="ci-section" id="evolution">
-      <div class="ci-count">01 / The product evolution</div>
-      <h2>The idea changed. The goal didn't.</h2>
-      <p class="ci-copy">
-        Can I? started as a way to compare financial decisions. As I worked
-        through the experience, organizing the numbers became the necessary
-        first step. You need to understand your money before comparing what
-        to do with it.
-      </p>
-      <div class="ci-journey">
-        <div class="ci-stage">
-          <div class="ci-digit">01</div>
-          <h3>Start with a question</h3>
-          <p>What happens if I pay this debt, save this amount, or make this purchase?</p>
-        </div>
-        <div class="ci-stage">
-          <div class="ci-digit">02</div>
-          <h3>Organize the picture</h3>
-          <p>Bring available money, obligations, savings, subscriptions,
-             and expected income into view.</p>
-        </div>
-        <div class="ci-stage">
-          <div class="ci-digit">03</div>
-          <h3>Compare the choices</h3>
-          <p>Test different allocations and see how each decision changes
-             the financial picture.</p>
-        </div>
-      </div>
-    </section>
+    <p class="ci-lead">
+      I wanted to see how a money decision might play out
+      before actually making it. That idea became Can I?,
+      a student-focused tool that is still evolving.
+    </p>
 
-    <section class="ci-section" id="thinking">
-      <div class="ci-count">02 / Product decisions</div>
-      <h2>Designing for real decisions.</h2>
-      <div class="ci-grid">
-        <div class="ci-tile">
-          <div class="ci-eyeline">Decision 01</div>
-          <h3>Context before comparison</h3>
-          <p>Financial inputs come first, so a comparison isn't made in isolation.</p>
-        </div>
-        <div class="ci-tile">
-          <div class="ci-eyeline">Decision 02</div>
-          <h3>Make the options meaningful</h3>
-          <p>If the goal is to reduce debt, suggested allocations should
-             reflect that goal, not arbitrarily leave all the money untouched.</p>
-        </div>
-        <div class="ci-tile">
-          <div class="ci-eyeline">Decision 03</div>
-          <h3>Reduce unnecessary effort</h3>
-          <p>Shorter labels, fewer confusing choices, and sample numbers
-             to make the experience easier to explore.</p>
-        </div>
-        <div class="ci-tile">
-          <div class="ci-eyeline">Decision 04</div>
-          <h3>Keep the financial picture connected</h3>
-          <p>Explore how money on hand, incoming funds, bills, debts,
-             and planned spending relate to one another.</p>
-        </div>
-      </div>
-    </section>
+    <span class="ci-status">
+      Active prototype · Work in progress
+    </span>
 
-    <section class="ci-section" id="feedback">
-      <div class="ci-count">03 / Testing and iteration</div>
-      <h2>You test. You learn. You change things.</h2>
-      <p class="ci-copy">
-        Early testing surfaced questions about the language, what counts
-        as available money, and whether suggested allocations actually
-        respected a user's goal. Those questions are shaping the next iterations.
-      </p>
-      <div class="ci-feedback">
-        <details>
-          <summary>Confusing financial labels</summary>
-          <p><strong>What surfaced:</strong> Some terms, including “Protected,”
-             weren't intuitive.<br>
-             <strong>Design response:</strong> Use clearer language such as
-             “Savings” and simplify prompts.</p>
-        </details>
-        <details>
-          <summary>Options that miss the goal</summary>
-          <p><strong>What surfaced:</strong> Debt-focused comparisons could
-             suggest keeping money available instead of paying down debt.<br>
-             <strong>Design response:</strong> Rework suggested allocations
-             around the user's stated goal.</p>
-        </details>
-        <details>
-          <summary>Too much to process</summary>
-          <p><strong>What surfaced:</strong> Wordy screens and numerous inputs
-             could make decisions harder.<br>
-             <strong>Design response:</strong> Shorter copy, more focused steps,
-             and fewer unnecessary fields.</p>
-        </details>
-        <details>
-          <summary>Missing financial context</summary>
-          <p><strong>What surfaced:</strong> Feedback called for better handling
-             of recurring bills, subscriptions, unexpected expenses, and
-             incoming money.<br>
-             <strong>Design response:</strong> Evaluate how these elements fit
-             into the organizing flow without overcomplicating it.</p>
-        </details>
-      </div>
-      <p class="ci-note">
-        These are summarized themes from development conversations and early
-        feedback, not verbatim testimonial quotes. Responses and revisions
-        remain ongoing.
-      </p>
-    </section>
+    <div class="ci-hero-actions">
+      <a class="ci-button filled"
+         href="https://can-i-phi.vercel.app/"
+         target="_blank" rel="noopener noreferrer">
+        Try the live prototype ↗
+      </a>
+      <a class="ci-button" href="#walkthrough">
+        Explore the thinking ↓
+      </a>
+    </div>
 
-    <section class="ci-section" id="next">
-      <div class="ci-count">04 / What's next</div>
-      <h2>Still figuring things out.</h2>
-      <p class="ci-copy">
-        The next challenge is keeping the financial overview useful
-        without making the tool feel like another complicated budgeting app.
-      </p>
-      <div class="ci-next">
-        <span class="ci-chip">Clearer comparison results</span>
-        <span class="ci-chip">Simpler input flow</span>
-        <span class="ci-chip">Recurring payments &amp; subscriptions</span>
-        <span class="ci-chip">Saved financial activity</span>
-        <span class="ci-chip">Continued user testing</span>
-      </div>
-      <div class="ci-disclaimer">
-        <strong>Project status:</strong> Can I? is an evolving prototype.
-        The current app may differ from the ideas or work-in-progress features
-        described here. No claims are made about improved financial outcomes
-        or validated product effectiveness.
-      </div>
-      <div class="ci-actions">
-        <a class="ci-link" href="https://can-i-phi.vercel.app/"
-           target="_blank" rel="noopener noreferrer">Explore Can I? ↗</a>
-      </div>
-    </section>
+    <p class="ci-context">
+      This page documents product decisions and ongoing
+      iteration, not a finished or independently validated
+      financial service.
+    </p>
+  </div>
 
-    <footer class="ci-footer">
-      <span>© 2026 Precious Diedemise · Made with curiosity.</span>
-      <a href="index.html#work">Back to selected work ↑</a>
-    </footer>
-  </main>
+  <div class="ci-hero-art" aria-hidden="true">
+    <div class="ci-kicker">
+      One question, a changing product
+    </div>
+
+    <div class="ci-art-word">Can I?</div>
+
+    <div class="ci-art-rule"></div>
+
+    <div class="ci-art-step">
+      <span>01</span> Organize the financial picture
+    </div>
+    <div class="ci-art-step">
+      <span>02</span> Compare possible choices
+    </div>
+    <div class="ci-art-step">
+      <span>03</span> Decide with more context
+    </div>
+  </div>
+</section>
+
+<!-- SECTION NAVIGATION -->
+<nav class="ci-anchor-nav" aria-label="Case study sections">
+  <a href="#evolution">01 / Evolution</a>
+  <a href="#walkthrough">02 / Walkthrough</a>
+  <a href="#decisions">03 / Product thinking</a>
+  <a href="#feedback">04 / Feedback</a>
+  <a href="#next">05 / What's next</a>
+</nav>
+
+<div class="ci-facts">
+  <div class="ci-fact">
+    <div class="ci-label">Starting point</div>
+    <strong>A question</strong>
+    <p>Can I see the impact before deciding?</p>
+  </div>
+  <div class="ci-fact">
+    <div class="ci-label">Product journey</div>
+    <strong>Organize → Compare</strong>
+    <p>Context comes before recommendations.</p>
+  </div>
+  <div class="ci-fact">
+    <div class="ci-label">Current phase</div>
+    <strong>Iterating</strong>
+    <p>Testing usability and refining choices.</p>
+  </div>
+</div>
+
+<!-- 01: EVOLUTION -->
+<section class="ci-section" id="evolution">
+  <div class="ci-kicker">01 / Product evolution</div>
+  <h2>The idea changed. The goal didn't.</h2>
+
+  <p class="ci-section-lead">
+    The original idea was simple: test financial decisions
+    before committing. Building a useful comparison revealed
+    that the tool first needed a clearer picture of the user's money.
+  </p>
+
+  <div class="ci-flow">
+    <article class="ci-flow-card">
+      <span class="ci-flow-index">01</span>
+      <h3>The question</h3>
+      <p>
+        What happens if I pay this debt, save this amount,
+        or make this purchase?
+      </p>
+    </article>
+
+    <article class="ci-flow-card">
+      <span class="ci-flow-index">02</span>
+      <h3>The foundation</h3>
+      <p>
+        Organize money on hand, obligations, savings,
+        subscriptions, and expected income.
+      </p>
+    </article>
+
+    <article class="ci-flow-card">
+      <span class="ci-flow-index">03</span>
+      <h3>The comparison</h3>
+      <p>
+        Explore different allocations and understand
+        what each choice changes.
+      </p>
+    </article>
+  </div>
+
+  <div class="ci-insight">
+    <strong>The product decision:</strong>
+    Organizing comes first, not because Can I? was originally
+    a budgeting app, but because financial comparisons need context.
+  </div>
+</section>
+
+<!-- 02: INTERACTIVE WALKTHROUGH -->
+<section class="ci-section" id="walkthrough">
+  <div class="ci-kicker">02 / Interactive walkthrough</div>
+  <h2>See the decision before you make it.</h2>
+
+  <p class="ci-section-lead">
+    Try a simplified illustration of the Can I? logic.
+    Change the numbers, compare three approaches, and see
+    how the same money produces different outcomes.
+    This is a case-study demonstration, not the live app.
+  </p>
+
+  <div class="ci-lab">
+
+    <!-- INPUTS -->
+    <div class="ci-panel">
+      <div class="ci-panel-head">
+        <h3>01 · Organize</h3>
+        <span class="ci-small">Example amounts · USD</span>
+      </div>
+
+      <div class="ci-input-grid">
+        <div class="ci-field">
+          <label for="ci-money">Money on hand</label>
+          <input id="ci-money" type="number"
+                 min="0" step="10" value="2000">
+        </div>
+
+        <div class="ci-field">
+          <label for="ci-bills">Bills &amp; essentials due</label>
+          <input id="ci-bills" type="number"
+                 min="0" step="10" value="550">
+        </div>
+
+        <div class="ci-field">
+          <label for="ci-subs">Subscriptions due</label>
+          <input id="ci-subs" type="number"
+                 min="0" step="10" value="50">
+        </div>
+
+        <div class="ci-field">
+          <label for="ci-debt">Outstanding debt</label>
+          <input id="ci-debt" type="number"
+                 min="0" step="10" value="1700">
+        </div>
+
+        <div class="ci-field ci-input-full">
+          <label for="ci-incoming">
+            Expected income (not received yet)
+          </label>
+          <input id="ci-incoming" type="number"
+                 min="0" step="10" value="300">
+        </div>
+      </div>
+
+      <p class="ci-subnote">
+        This example assumes bills and subscriptions are separate
+        amounts, and sets them aside first. Expected income is
+        shown for context but excluded until received.
+      </p>
+
+      <div class="ci-input-actions">
+        <button class="ci-quiet-button" id="ci-sample">
+          Use sample numbers
+        </button>
+        <button class="ci-quiet-button" id="ci-clear">
+          Clear amounts
+        </button>
+      </div>
+    </div>
+
+    <!-- COMPARISON -->
+    <div class="ci-panel">
+      <div class="ci-panel-head">
+        <h3>02 · Compare</h3>
+        <span class="ci-small">Illustrative scenarios</span>
+      </div>
+
+      <div class="ci-budget" aria-live="polite">
+        <div>
+          <div class="ci-lbl">
+            Money available after committed costs
+          </div>
+          <strong id="ci-available">$1,400</strong>
+          <div class="ci-small" id="ci-reserved">
+            $600 set aside for bills and subscriptions
+          </div>
+        </div>
+
+        <div class="ci-excluded" id="ci-future">
+          $300 expected later, excluded
+          from this comparison
+        </div>
+      </div>
+
+      <p class="ci-budget-warning"
+         id="ci-warning" role="status"></p>
+
+      <div class="ci-choice-label">
+        Choose a way to allocate the remainder
+      </div>
+
+      <div class="ci-options" role="group"
+           aria-label="Compare allocation approaches">
+
+        <button class="ci-plan"
+                data-plan="debt" aria-pressed="true">
+          <span class="ci-plan-title">Debt first</span>
+          <span class="ci-plan-sub">
+            Pay debt before adding to savings.
+          </span>
+          <span class="ci-plan-mini">
+            <span></span><span></span>
+          </span>
+        </button>
+
+        <button class="ci-plan"
+                data-plan="balanced" aria-pressed="false">
+          <span class="ci-plan-title">Balanced</span>
+          <span class="ci-plan-sub">
+            Split between debt and savings.
+          </span>
+          <span class="ci-plan-mini">
+            <span></span><span></span>
+          </span>
+        </button>
+
+        <button class="ci-plan"
+                data-plan="save" aria-pressed="false">
+          <span class="ci-plan-title">Savings first</span>
+          <span class="ci-plan-sub">
+            Prioritize savings while paying debt.
+          </span>
+          <span class="ci-plan-mini">
+            <span></span><span></span>
+          </span>
+        </button>
+      </div>
+
+      <div class="ci-result" aria-live="polite">
+        <div class="ci-result-title">
+          <strong id="ci-result-title">Debt first</strong>
+          <span id="ci-fully-assigned">
+            100% of remainder assigned
+          </span>
+        </div>
+
+        <div class="ci-allocation-bar"
+             role="img"
+             aria-label="Allocation to debt and savings"
+             id="ci-result-bar">
+          <div class="ci-debt-seg" id="ci-debt-bar"></div>
+          <div class="ci-save-seg" id="ci-save-bar"></div>
+        </div>
+
+        <div class="ci-legend">
+          <span>
+            <i style="background:#ad6147"></i>
+            Debt payment
+            <strong id="ci-debt-pay">$1,400</strong>
+          </span>
+
+          <span>
+            <i style="background:#7d916a"></i>
+            To savings
+            <strong id="ci-save-pay">$0</strong>
+          </span>
+        </div>
+
+        <div class="ci-result-foot">
+          <div>
+            <span>Debt balance after payment</span>
+            <b id="ci-debt-after">$300</b>
+          </div>
+          <div>
+            <span>Unassigned remainder</span>
+            <b id="ci-unassigned">$0</b>
+          </div>
+        </div>
+      </div>
+
+      <p class="ci-lab-note">
+        The comparison assigns all available money to debt
+        and/or savings without paying more than the debt balance.
+        This is deliberately simplified. It does not calculate
+        interest, minimum payments, emergencies, or the best
+        financial choice.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03: PRODUCT DECISIONS -->
+<section class="ci-section" id="decisions">
+  <div class="ci-kicker">03 / Product decisions</div>
+  <h2>What changed, and why?</h2>
+
+  <p class="ci-section-lead">
+    Product work is not just about adding features.
+    These are the trade-offs shaping the experience.
+  </p>
+
+  <div class="ci-decisions">
+    <div class="ci-decision-row">
+      <div>
+        <span class="ci-label">Journey design</span>
+        <h3>Organize before comparing</h3>
+      </div>
+      <div>
+        <p>
+          <strong>Reasoning:</strong>
+          A comparison without bills, debts, and money on hand
+          can overlook important constraints.
+        </p>
+      </div>
+    </div>
+
+    <div class="ci-decision-row">
+      <div>
+        <span class="ci-label">Recommendation logic</span>
+        <h3>Align options with the goal</h3>
+      </div>
+      <div>
+        <p>
+          <strong>Reasoning:</strong>
+          If a user intends to allocate an amount toward debt,
+          an option that leaves the entire amount unused
+          is not meaningful.
+        </p>
+      </div>
+    </div>
+
+    <div class="ci-decision-row">
+      <div>
+        <span class="ci-label">User experience</span>
+        <h3>Shorter, clearer screens</h3>
+      </div>
+      <div>
+        <p>
+          <strong>Reasoning:</strong>
+          More explanation is not always more helpful.
+          Users need to see what a choice does without reading
+          a wall of text.
+        </p>
+      </div>
+    </div>
+
+    <div class="ci-decision-row">
+      <div>
+        <span class="ci-label">Financial context</span>
+        <h3>Separate incoming from available</h3>
+      </div>
+      <div>
+        <p>
+          <strong>Reasoning:</strong>
+          Money expected later is useful to plan around,
+          but it shouldn't automatically be treated as
+          cash available today.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04: USER FEEDBACK -->
+<section class="ci-section" id="feedback">
+  <div class="ci-kicker">04 / Early feedback &amp; iteration</div>
+  <h2>You test. You learn. You change things.</h2>
+
+  <p class="ci-section-lead">
+    Early testers and design reviews surfaced several recurring issues.
+    Expand an item to see the product response.
+    These are feedback themes, not direct quotations
+    or claims of completed fixes.
+  </p>
+
+  <div class="ci-feedback">
+
+    <details>
+      <summary>Some labels didn't make sense</summary>
+      <p>
+        Terms like “Protected” were not immediately
+        intuitive to users.
+      </p>
+      <p class="ci-response">
+        <em>DESIGN RESPONSE</em><br>
+        Prefer familiar language such as “Savings”
+        and explain financial categories only when needed.
+      </p>
+    </details>
+
+    <details>
+      <summary>Debt comparisons left money untouched</summary>
+      <p>
+        Some suggested options didn't align with the
+        stated goal of using money to reduce debt.
+      </p>
+      <p class="ci-response">
+        <em>DESIGN RESPONSE</em><br>
+        Explore goal-aware allocations and show
+        how the full chosen amount is distributed.
+      </p>
+    </details>
+
+    <details>
+      <summary>Too many words and inputs</summary>
+      <p>
+        Long descriptions and overlapping choices
+        could make the experience harder to understand.
+      </p>
+      <p class="ci-response">
+        <em>DESIGN RESPONSE</em><br>
+        Simplify language, remove duplication,
+        and guide users through smaller steps.
+      </p>
+    </details>
+
+    <details>
+      <summary>The financial picture felt incomplete</summary>
+      <p>
+        Feedback raised questions about incoming pay,
+        recurring subscriptions, unforeseen expenses,
+        and saved activity.
+      </p>
+      <p class="ci-response">
+        <em>DESIGN RESPONSE</em><br>
+        Assess which organizing features are necessary
+        before expanding the comparison experience.
+      </p>
+    </details>
+
+  </div>
+</section>
+
+<!-- 05: NEXT STEPS -->
+<section class="ci-section" id="next">
+  <div class="ci-kicker">05 / What's next</div>
+  <h2>Still building, still learning.</h2>
+
+  <p class="ci-section-lead">
+    The next challenge is keeping the financial picture
+    useful without turning a simple decision tool into
+    a complicated system.
+  </p>
+
+  <div class="ci-next">
+    <article>
+      <span class="ci-kicker">Usability</span>
+      <h3>Make comparisons easier to read</h3>
+      <p>
+        Reduce unnecessary copy and make allocation
+        results more immediately understandable.
+      </p>
+    </article>
+
+    <article>
+      <span class="ci-kicker">Organization</span>
+      <h3>Clarify what belongs in the overview</h3>
+      <p>
+        Continue evaluating subscriptions, incoming money,
+        recurring obligations, and activity history.
+      </p>
+    </article>
+
+    <article>
+      <span class="ci-kicker">Validation</span>
+      <h3>Keep testing assumptions</h3>
+      <p>
+        Observe where users hesitate, revise the flow,
+        and test whether changes improve clarity.
+      </p>
+    </article>
+  </div>
+
+  <div class="ci-hero-actions">
+    <a class="ci-button filled"
+       href="https://can-i-phi.vercel.app/"
+       target="_blank" rel="noopener noreferrer">
+      Explore the current Can I? prototype ↗
+    </a>
+  </div>
+</section>
+
+<!-- LIMITATIONS -->
+<div class="ci-limit">
+  <div>
+    <strong>About this project</strong>
+    <p>
+      Can I? is an independently developed, student-focused
+      financial decision tool in active iteration.
+      This page documents the original goal, evolving structure,
+      and design reasoning.
+    </p>
+  </div>
+
+  <div>
+    <strong>What this case study does not claim</strong>
+    <p>
+      The interactive example is illustrative, not a live
+      product embed or personalized financial advice.
+      The features discussed may not all be available
+      in the current prototype. No financial outcome
+      improvements have been validated.
+    </p>
+  </div>
+</div>
+
+<footer class="ci-footer">
+  <span>© 2026 Precious Diedemise · Made with curiosity.</span>
+  <a href="index.html#work">← Back to selected work</a>
+</footer>
+
+</main>
+
+<script>
+const ciFields = {
+  money: document.getElementById('ci-money'),
+  bills: document.getElementById('ci-bills'),
+  subs: document.getElementById('ci-subs'),
+  debt: document.getElementById('ci-debt'),
+  incoming: document.getElementById('ci-incoming')
+};
+
+const ciSamples = {
+  money:2000,
+  bills:550,
+  subs:50,
+  debt:1700,
+  incoming:300
+};
+
+let ciSelected = 'debt';
+
+const ciDollar = new Intl.NumberFormat('en-US', {
+  style:'currency',
+  currency:'USD',
+  maximumFractionDigits:0
+});
+
+const ciRead = key =>
+  Math.max(0,Number(ciFields[key].value) || 0);
+
+const ciSet = (id,value) =>
+  document.getElementById(id).textContent = value;
+
+const ciName = {
+  debt:'Debt first',
+  balanced:'Balanced',
+  save:'Savings first'
+};
+
+function ciAllocate(available,debt,plan) {
+  const fraction =
+    plan === 'debt' ? 1 :
+    plan === 'balanced' ? .65 : .35;
+
+  const toDebt = Math.min(
+    debt,
+    Math.round(available * fraction * 100) / 100
+  );
+
+  return {
+    debt:toDebt,
+    save:Math.max(0,available-toDebt)
+  };
+}
+
+function ciRender() {
+  const cash = ciRead('money');
+  const bills = ciRead('bills');
+  const subs = ciRead('subs');
+  const debt = ciRead('debt');
+  const incoming = ciRead('incoming');
+
+  const committed = bills + subs;
+  const available = Math.max(0,cash-committed);
+
+  ciSet('ci-available',ciDollar.format(available));
+
+  ciSet(
+    'ci-reserved',
+    ciDollar.format(Math.min(cash,committed)) +
+    ' of money on hand set aside for bills and subscriptions'
+  );
+
+  ciSet(
+    'ci-future',
+    ciDollar.format(incoming) +
+    ' expected later, excluded from this comparison'
+  );
+
+  const warning = document.getElementById('ci-warning');
+
+  if(cash < committed) {
+    warning.style.display = 'block';
+    warning.textContent =
+      'Committed costs exceed money on hand by ' +
+      ciDollar.format(committed-cash) +
+      '. No money is available to allocate.';
+  } else {
+    warning.style.display = 'none';
+    warning.textContent = '';
+  }
+
+  document.querySelectorAll('.ci-plan').forEach(btn => {
+    const key = btn.dataset.plan;
+    const allocation = ciAllocate(available,debt,key);
+
+    btn.setAttribute(
+      'aria-pressed',
+      String(key === ciSelected)
+    );
+
+    const bars = btn.querySelectorAll('.ci-plan-mini span');
+
+    bars[0].style.width =
+      (available ? allocation.debt/available*100 : 0) + '%';
+
+    bars[1].style.width =
+      (available ? allocation.save/available*100 : 0) + '%';
+  });
+
+  const result = ciAllocate(available,debt,ciSelected);
+
+  ciSet('ci-result-title',ciName[ciSelected]);
+
+  ciSet(
+    'ci-fully-assigned',
+    available > 0
+      ? '100% of remainder assigned'
+      : 'Nothing available to assign'
+  );
+
+  ciSet('ci-debt-pay',ciDollar.format(result.debt));
+  ciSet('ci-save-pay',ciDollar.format(result.save));
+
+  ciSet(
+    'ci-debt-after',
+    ciDollar.format(Math.max(0,debt-result.debt))
+  );
+
+  ciSet(
+    'ci-unassigned',
+    ciDollar.format(
+      Math.max(0,available-result.debt-result.save)
+    )
+  );
+
+  document.getElementById('ci-debt-bar').style.width =
+    (available ? result.debt/available*100 : 0) + '%';
+
+  document.getElementById('ci-save-bar').style.width =
+    (available ? result.save/available*100 : 0) + '%';
+
+  document.getElementById('ci-result-bar').setAttribute(
+    'aria-label',
+    ciDollar.format(result.debt) + ' toward debt and ' +
+    ciDollar.format(result.save) + ' toward savings'
+  );
+}
+
+Object.values(ciFields).forEach(el => {
+  el.addEventListener('input',ciRender);
+});
+
+document.querySelectorAll('.ci-plan').forEach(btn => {
+  btn.addEventListener('click',() => {
+    ciSelected = btn.dataset.plan;
+    ciRender();
+  });
+});
+
+document.getElementById('ci-sample').addEventListener(
+  'click',() => {
+    Object.entries(ciSamples).forEach(([key,value]) => {
+      ciFields[key].value = value;
+    });
+
+    ciSelected = 'debt';
+    ciRender();
+  }
+);
+
+document.getElementById('ci-clear').addEventListener(
+  'click',() => {
+    Object.values(ciFields).forEach(el => {
+      el.value = '';
+    });
+
+    ciRender();
+  }
+);
+
+ciRender();
+</script>
 </body>
 </html>
