@@ -1,200 +1,1305 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8f4eb">
-  <meta name="description" content="An interactive stakeholder prioritization case study of the Warrensburg Chamber of Commerce by Precious Diedemise.">
-  <title>Who Do You Prioritize? · Precious Diedemise</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    :root{--cream:#f8f4eb;--paper:#fffdf7;--ink:#302e28;--muted:#6b665d;--rust:#aa593e;--deep:#82432f;--olive:#667052;--line:#dfd9cb;--sage:#e8e9da;--tan:#f0e3d2}
-    .case-main{max-width:1130px;margin:auto;padding:0 30px 96px}
-    .case-top{padding:62px 0 52px;border-bottom:1px solid var(--line)}
-    .case-kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--olive);margin:0 0 18px}
-    .case-top h1{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(44px,6.1vw,80px);letter-spacing:-1.9px;line-height:1.1;font-weight:400;max-width:950px;margin:0 0 25px}
-    .case-top h1 em{font-style:normal;color:var(--rust)}
-    .case-lead{font-size:clamp(17px,2vw,21px);line-height:1.65;max-width:810px;margin:0;color:#504a40}
-    .case-lead-closer{font-family:'DM Serif Display',Georgia,serif;color:var(--deep);font-size:27px;margin:14px 0 24px}
-    .context{font-size:12px;color:var(--muted);border-left:3px solid #aa846d;padding-left:14px;max-width:790px;line-height:1.6}
-    .case-navigation{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-    .case-navigation a{font-size:12px;font-weight:700;padding:9px 14px;border-radius:50px;border:1px solid var(--line);color:var(--deep);background:var(--paper)}
-    .case-section{padding:62px 0 14px;scroll-margin-top:85px}
-    .case-section-head{margin-bottom:24px}
-    .case-number{font-size:11px;color:var(--rust);letter-spacing:.15em;font-weight:700;text-transform:uppercase}
-    .case-section h2{font:400 clamp(31px,4.1vw,47px)/1.18 'DM Serif Display',Georgia,serif;letter-spacing:-.7px;margin:9px 0 12px}
-    .case-section-head p{max-width:760px;color:var(--muted);line-height:1.7;margin:0}
-    .snapshot{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .snapshot article{border:1px solid var(--line);background:var(--paper);border-radius:15px;padding:21px;min-height:132px}
-    .snapshot .mini{font-size:10px;letter-spacing:.13em;font-weight:700;text-transform:uppercase;color:var(--olive)}
-    .snapshot strong{font:400 32px 'DM Serif Display',Georgia,serif;display:block;margin:8px 0 4px}
-    .snapshot p{margin:0;color:var(--muted);font-size:13px}
-    .stakeholder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .stakeholder-tile{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:20px;display:flex;align-items:center;gap:12px;min-height:110px}
-    .stakeholder-tile span:first-child{height:36px;width:36px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;background:var(--sage);color:var(--olive);font-size:16px}
-    .stakeholder-tile strong{font-size:13px;line-height:1.5}
-    .figure{background:var(--paper);border:1px solid var(--line);border-radius:19px;padding:26px;box-shadow:0 18px 40px rgba(71,55,32,.035)}
-    .figure-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:24px}
-    .figure-heading strong{font:400 23px 'DM Serif Display',Georgia,serif}
-    .figure-heading span{font-size:10px;letter-spacing:.1em;color:var(--muted);font-weight:700}
-    .matrix-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:25px;align-items:stretch}
-    .matrix-figure{display:grid;grid-template-columns:20px 1fr;gap:8px}
-    .vertical-axis{writing-mode:vertical-rl;transform:rotate(180deg);display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.12em;font-weight:700;color:var(--muted)}
-    .matrix-body{display:flex;flex-direction:column;gap:8px}
-    .matrix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-height:360px}
-    .quadrant{border:2px solid transparent;border-radius:11px;min-height:164px;padding:18px 14px;text-align:left;display:flex;flex-direction:column;gap:9px;align-items:flex-start;background:#efe9df;color:var(--ink);transition:border-color .15s,transform .15s,background .15s}
-    .quadrant:nth-child(1){background:#eee4d8}.quadrant:nth-child(2){background:#dfe5d5}.quadrant:nth-child(3){background:#f1ede4}.quadrant:nth-child(4){background:#e8e2d5}
-    .quadrant:hover{transform:translateY(-2px)}.quadrant[aria-pressed="true"]{border-color:var(--rust);box-shadow:inset 0 0 0 1px var(--rust)}
-    .quadrant b{font:400 clamp(18px,2vw,25px)/1.18 'DM Serif Display',Georgia,serif}
-    .quadrant small{font-size:11px;color:#6e685c}.quadrant .dot-count{margin-top:auto;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#645b51;font-weight:700}
-    .horizontal-axis{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.12em;font-weight:700;color:var(--muted)}
-    .detail-panel{background:#f7f3ea;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px;min-height:350px}
-    .detail-panel h3{font:400 30px 'DM Serif Display',Georgia,serif;margin:0}.detail-panel p{margin:0;font-size:13px;color:#625a50;line-height:1.65}
-    .tiny-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--olive);font-weight:700}
-    .mini-list{list-style:none;padding:0;margin:0;display:grid;gap:7px}.mini-list li{border-bottom:1px solid #e0d9cb;padding-bottom:7px;font-size:13px;font-weight:600}
-    .helper{font-size:11px;color:var(--muted);margin-top:13px;line-height:1.6}
-    .attribute-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
-    .attribute{padding:18px;border:1px solid var(--line);background:#f3f0e7;border-radius:12px}.attribute strong{display:block;font-size:14px;margin-bottom:4px}.attribute p{font-size:12px;color:var(--muted);line-height:1.55;margin:0}
-    .salience-layout{display:grid;grid-template-columns:minmax(220px,.9fr) minmax(0,1.1fr);gap:20px}
-    .select-label{display:block;color:var(--olive);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:9px}
-    select{width:100%;border:1px solid #cfc8bb;border-radius:10px;padding:13px;background:#fffefb;color:var(--ink);font:inherit;font-size:13px;min-height:48px}
-    .attribute-flags{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-    .flag{padding:16px 9px;border:1px solid var(--line);border-radius:11px;text-align:center;background:#f4f0e6}.flag b{display:block;font-size:22px;line-height:1.2;color:#a9a49b}.flag.active b{color:var(--olive)}.flag span{font-size:11px;font-weight:700}
-    .salience-result{background:#f3f0e7;border-radius:12px;padding:23px;margin-top:13px}.salience-result h3{font:400 30px 'DM Serif Display',Georgia,serif;margin:7px 0 9px}.salience-result p{font-size:13px;color:var(--muted);margin:0;line-height:1.7}
-    .playbook-controls{margin-bottom:18px}.filter-row{display:flex;gap:8px;flex-wrap:wrap}
-    .filter-btn{background:#f3f0e8;border:1px solid var(--line);border-radius:100px;padding:9px 15px;font-size:12px;font-weight:700;color:#665e51}.filter-btn[aria-pressed="true"]{color:#fff;background:var(--olive);border-color:var(--olive)}
-    .playbook{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-    .playbook-card{border:1px solid var(--line);border-radius:13px;background:var(--paper);padding:22px;display:grid;gap:14px}
-    .playbook-card h3{font:400 23px/1.2 'DM Serif Display',Georgia,serif;margin:0}
-    .playbook-card .mode{font-size:10px;letter-spacing:.08em;color:var(--olive);text-transform:uppercase;font-weight:700}
-    .playbook-card dt{font-size:10px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0 0 4px}.playbook-card dd{margin:0;font-size:13px;line-height:1.55}
-    .recommendations{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .recommendations article{border-top:3px solid var(--rust);background:var(--paper);padding:21px;border-radius:0 0 12px 12px;border-left:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .recommendations .n{font:400 28px 'DM Serif Display',Georgia,serif;color:var(--rust)}.recommendations strong{display:block;margin:5px 0 9px;font-size:14px}.recommendations p{margin:0;font-size:12px;color:var(--muted);line-height:1.65}
-    .limitations{background:#ececdf;border-radius:13px;padding:22px 24px;margin-top:20px;font-size:13px;color:#565b4d;line-height:1.75}.limitations strong{color:#30352b}
-    .page-footer{padding:26px 0;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--rust);outline-offset:3px}
-    @media(max-width:850px){.stakeholder-grid{grid-template-columns:repeat(2,1fr)}.snapshot{grid-template-columns:repeat(2,1fr)}.matrix-layout,.salience-layout{grid-template-columns:1fr}.playbook{grid-template-columns:1fr}.recommendations{grid-template-columns:1fr}}
-    @media(max-width:600px){.case-main{padding:0 20px 70px}.case-top{padding:42px 0}.case-section{padding:45px 0 9px}.case-top h1{font-size:43px}.snapshot{gap:9px}.snapshot article{padding:16px}.stakeholder-grid{gap:9px}.stakeholder-tile{padding:13px;gap:9px;min-height:100px}.stakeholder-tile span:first-child{width:30px;height:30px}.stakeholder-tile strong{font-size:12px}.figure{padding:14px}.matrix{min-height:320px}.quadrant{min-height:147px;padding:12px 8px}.quadrant b{font-size:19px}.quadrant small{font-size:10px}.attribute-list{grid-template-columns:1fr}.detail-panel{min-height:0}.figure-heading{align-items:flex-start}.figure-heading span{text-align:right}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8f4eb">
+<title>Who Do You Prioritize? | Precious Diedemise</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+:root {
+  --cream:#f8f4eb;
+  --paper:#fffdf7;
+  --ink:#302e28;
+  --muted:#6b665d;
+  --rust:#aa593e;
+  --olive:#667052;
+  --line:#dfd9cb;
+  --sage:#e8e9da;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'DM Sans',Arial,sans-serif;
+  line-height:1.6;
+}
+button,select {font:inherit}
+button {cursor:pointer}
+a {color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible,select:focus-visible {
+  outline:3px solid var(--rust);
+  outline-offset:3px;
+}
+.sa-shell {max-width:1180px;margin:auto;padding:0 32px}
+
+.sa-topbar {
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(248,244,235,.95);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
+}
+.sa-topbar .sa-shell {
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.sa-brand {
+  font:normal 23px 'DM Serif Display',Georgia,serif;
+}
+.sa-brand em {color:var(--rust);font-style:normal}
+.sa-nav {display:flex;gap:22px;font-size:12px;font-weight:700}
+.sa-nav a:hover {color:var(--rust)}
+
+.sa-eyebrow {
+  font-size:11px;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  color:var(--olive);
+  font-weight:700;
+}
+.sa-number {
+  color:var(--rust);
+  font-size:11px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  font-weight:700;
+}
+.sa-hero {
+  padding:82px 0 62px;
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:60px;
+  align-items:center;
+}
+.sa-hero h1 {
+  font:normal clamp(46px,5.8vw,76px)/1.09
+    'DM Serif Display',Georgia,serif;
+  letter-spacing:-1.8px;
+  margin:16px 0 25px;
+}
+.sa-hero h1 em {font-style:normal;color:var(--rust)}
+.sa-lead {
+  font-size:18px;
+  line-height:1.74;
+  color:#504b43;
+  margin:0;
+}
+.sa-close {
+  font:normal 26px 'DM Serif Display',Georgia,serif;
+  color:#82432f;
+  margin:15px 0 25px;
+}
+.sa-disclosure {
+  border-left:2px solid #b78768;
+  padding-left:14px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+.sa-hero-art {
+  border:1px solid #d9d6c8;
+  border-radius:22px;
+  background:#e7e8d9;
+  min-height:350px;
+  position:relative;
+  overflow:hidden;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.sa-hero-art:before {
+  content:"";
+  position:absolute;
+  width:270px;height:270px;
+  border:1px solid #8c9d84;
+  border-radius:50%;
+  right:-108px;top:-94px;
+  box-shadow:0 0 0 32px #94a07f24,
+             0 0 0 69px #94a07f14;
+}
+.sa-hero-art:after {
+  content:"";
+  position:absolute;
+  width:195px;height:195px;
+  background:#b67051;
+  border-radius:50%;
+  left:-80px;bottom:-110px;
+  opacity:.76;
+}
+.sa-art-label,.sa-art-mid,.sa-art-bottom {
+  position:relative;
+  z-index:1;
+}
+.sa-art-label {
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-weight:700;
+  color:#4b604a;
+}
+.sa-art-mid strong {
+  display:block;
+  font:normal 84px 'DM Serif Display',Georgia,serif;
+  color:#445a43;
+  line-height:1;
+}
+.sa-art-mid small {font-size:13px;color:#566850}
+.sa-art-bottom {display:grid;gap:9px}
+.sa-art-bar {
+  font-size:12px;
+  font-weight:700;
+  color:#344835;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.sa-art-bar i {
+  width:8px;height:8px;
+  background:#b3694d;
+  border-radius:50%;
+}
+.sa-art-bar:nth-child(2) i {background:#6d825c}
+.sa-art-bar:nth-child(3) i {background:#d3a27b}
+
+.sa-outline-nav {
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  gap:27px;
+  padding:16px 0;
+  flex-wrap:wrap;
+}
+.sa-outline-nav a {
+  font-size:12px;
+  font-weight:700;
+  color:#5f6552;
+}
+.sa-outline-nav a:hover {color:var(--rust)}
+
+.sa-metrics {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-bottom:1px solid var(--line);
+}
+.sa-metric {
+  margin:22px 0;
+  padding:26px 24px 27px 0;
+  border-right:1px solid var(--line);
+}
+.sa-metric:not(:first-child) {padding-left:30px}
+.sa-metric:last-child {border:0}
+.sa-metric strong {
+  display:block;
+  font:normal 40px 'DM Serif Display',Georgia,serif;
+  margin:6px 0;
+}
+.sa-metric p {font-size:12px;color:var(--muted);margin:0}
+
+.sa-section {
+  padding:78px 0 0;
+  scroll-margin-top:110px;
+}
+.sa-section-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:24px;
+  margin-bottom:26px;
+}
+.sa-section h2 {
+  font:normal clamp(35px,3.8vw,49px)/1.13
+    'DM Serif Display',Georgia,serif;
+  letter-spacing:-.65px;
+  margin:9px 0 11px;
+}
+.sa-section-head p {
+  color:var(--muted);
+  max-width:720px;
+  margin:0;
+  font-size:14px;
+}
+.sa-head-aside {
+  color:var(--olive);
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+/* POWER–INTEREST MATRIX */
+.sa-workspace {
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:18px;
+  align-items:stretch;
+}
+.sa-matrix-wrap {
+  min-width:0;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:19px;
+  padding:22px 23px 18px;
+  box-shadow:0 18px 38px #463b2b0a;
+}
+.sa-figure-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:16px;
+}
+.sa-figure-top b {
+  font:normal 21px 'DM Serif Display',Georgia,serif;
+}
+.sa-figure-top span {
+  font-size:10px;
+  color:var(--muted);
+  font-weight:700;
+  letter-spacing:.1em;
+}
+.sa-matrix-scroll {overflow-x:auto;padding-bottom:3px}
+.sa-matrix-grid {
+  min-width:550px;
+  display:grid;
+  grid-template-columns:20px 1fr;
+  gap:10px;
+}
+.sa-yaxis {
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.1em;
+  color:var(--muted);
+  padding:12px 0;
+}
+.sa-matrix-content {display:flex;flex-direction:column;gap:8px}
+.sa-quads {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:repeat(2,minmax(190px,1fr));
+  gap:9px;
+}
+.sa-quad {
+  border:1px solid #dadad1;
+  border-radius:11px;
+  padding:17px 14px;
+  min-height:190px;
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+}
+.sa-quad[data-q="satisfy"] {background:#f1e9dc}
+.sa-quad[data-q="manage"] {background:#e2e9db}
+.sa-quad[data-q="monitor"] {background:#f4efe6}
+.sa-quad[data-q="inform"] {background:#eae5da}
+.sa-quad-head {
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:7px;
+}
+.sa-quad-head b {
+  font:normal 19px/1.18 'DM Serif Display',Georgia,serif;
+}
+.sa-quad-head small {font-size:10px;color:#777367}
+.sa-dots {
+  display:flex;
+  flex-wrap:wrap;
+  align-content:center;
+  gap:7px;
+  flex:1;
+}
+.sa-dot {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:6px 9px;
+  min-height:33px;
+  border-radius:50px;
+  border:1px solid #4c524633;
+  font-size:11px;
+  font-weight:700;
+  text-align:left;
+  background:#fffdf8bb;
+  color:#45483e;
+  transition:.15s;
+}
+.sa-dot:hover {
+  transform:translateY(-1px);
+  border-color:var(--rust);
+}
+.sa-dot[aria-pressed="true"] {
+  background:#344937;
+  color:white;
+  border-color:#344937;
+}
+.sa-dot i {
+  width:7px;height:7px;
+  flex:none;
+  border-radius:50%;
+  background:#b66d50;
+}
+.sa-xaxis {
+  display:flex;
+  justify-content:space-between;
+  margin-top:4px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.1em;
+  color:var(--muted);
+}
+.sa-figure-note {
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.65;
+  margin:15px 0 0;
+}
+
+/* SELECTED STAKEHOLDER PROFILE */
+.sa-details {
+  border:1px solid var(--line);
+  border-radius:19px;
+  background:#f5f0e7;
+  padding:29px 28px;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  min-width:0;
+}
+.sa-detail-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.sa-details h3 {
+  font:normal 34px/1.14 'DM Serif Display',Georgia,serif;
+  margin:0;
+}
+.sa-details p {
+  font-size:13px;
+  color:#5a554d;
+  margin:0;
+  line-height:1.68;
+}
+.sa-detail-label {
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:#687658;
+  font-weight:700;
+}
+.sa-pill {
+  display:inline-block;
+  background:#e5e8d9;
+  color:#465a43;
+  border-radius:50px;
+  padding:6px 11px;
+  font-size:11px;
+  font-weight:700;
+}
+.sa-attr-mini {display:flex;gap:6px;flex-wrap:wrap}
+.sa-attr-mini span {
+  border:1px solid #d6cec0;
+  background:#faf7f0;
+  border-radius:6px;
+  padding:6px 9px;
+  font-size:11px;
+  font-weight:700;
+}
+.sa-detail-sep {border-top:1px solid #ddd4c6}
+.sa-detail-block {display:grid;gap:5px}
+
+/* SALIENCE MODEL */
+.sa-two {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+.sa-analysis-card {
+  border:1px solid var(--line);
+  background:var(--paper);
+  border-radius:19px;
+  padding:27px;
+}
+.sa-model-visual {
+  min-height:292px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.sa-model-visual svg {
+  width:100%;
+  max-width:410px;
+  height:auto;
+}
+.sa-venn-circle {transition:fill .2s,opacity .2s}
+.sa-venn-label {
+  font-size:14px;
+  font-weight:700;
+  fill:#343d32;
+}
+.sa-venn-icon {
+  font-size:18px;
+  font-weight:700;
+  fill:#324f3b;
+}
+.sa-salience-select {
+  width:100%;
+  padding:12px 14px;
+  border:1px solid #cfc8ba;
+  background:var(--paper);
+  border-radius:9px;
+  font-size:13px;
+  min-height:46px;
+  margin-bottom:18px;
+}
+.sa-classification {
+  font:normal 35px 'DM Serif Display',Georgia,serif;
+  color:#354b38;
+  margin:2px 0 8px;
+}
+.sa-attributes {display:flex;gap:8px;margin:15px 0;flex-wrap:wrap}
+.sa-attribute {
+  flex:1;
+  min-width:90px;
+  border:1px solid var(--line);
+  background:#f2eee5;
+  border-radius:10px;
+  padding:10px 9px;
+  font-size:11px;
+  text-align:center;
+  color:var(--muted);
+}
+.sa-attribute b {
+  display:block;
+  font-size:21px;
+  color:#aaa397;
+}
+.sa-attribute.is-active {
+  border-color:#9faf93;
+  background:#e7ebdf;
+  color:#3c563c;
+}
+.sa-attribute.is-active b {color:#526b52}
+.sa-analysis-card p {
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.68;
+}
+
+/* COMMUNICATION PLAYBOOK */
+.sa-filter {display:flex;gap:8px;flex-wrap:wrap;margin-bottom:17px}
+.sa-filter button {
+  padding:9px 13px;
+  background:transparent;
+  border:1px solid var(--line);
+  border-radius:30px;
+  font-size:12px;
+  color:#716859;
+}
+.sa-filter button[aria-pressed="true"] {
+  background:#526a52;
+  color:white;
+  border-color:#526a52;
+}
+.sa-playbook {
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:17px;
+  overflow:hidden;
+}
+.sa-table {
+  width:100%;
+  border-collapse:collapse;
+  text-align:left;
+}
+.sa-table thead {background:#edeade}
+.sa-table th {
+  padding:14px 19px;
+  font-size:10px;
+  letter-spacing:.13em;
+  color:#65745b;
+  text-transform:uppercase;
+}
+.sa-table td {
+  font-size:12px;
+  vertical-align:top;
+  border-top:1px solid var(--line);
+  padding:20px 19px;
+}
+.sa-table td:first-child {
+  font-size:13px;
+  font-weight:700;
+  min-width:200px;
+}
+.sa-table td:nth-child(2) {
+  color:#4d5945;
+  font-weight:600;
+  min-width:140px;
+}
+
+/* RECOMMENDATIONS */
+.sa-recs {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+.sa-rec {
+  border-top:3px solid var(--rust);
+  background:var(--paper);
+  padding:23px 21px;
+  border-radius:0 0 11px 11px;
+  border-left:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  border-right:1px solid var(--line);
+}
+.sa-rec-number {
+  font:normal 32px 'DM Serif Display',Georgia,serif;
+  color:var(--rust);
+}
+.sa-rec h3 {font-size:14px;margin:10px 0 9px}
+.sa-rec p {font-size:12px;color:var(--muted);margin:0}
+.sa-limit {
+  border-top:1px solid var(--line);
+  padding:28px 0 48px;
+  margin-top:58px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+.sa-limit strong {font-size:13px}
+.sa-limit p {font-size:12px;color:var(--muted)}
+.sa-foot {
+  border-top:1px solid var(--line);
+  padding:23px 0 32px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  font-size:12px;
+  color:var(--muted);
+}
+@media(max-width:1030px) {
+  .sa-hero {grid-template-columns:1fr}
+  .sa-hero-art {display:none}
+  .sa-workspace {grid-template-columns:1fr}
+}
+@media(max-width:720px) {
+  .sa-shell {padding:0 19px}
+  .sa-topbar .sa-shell {height:66px}
+  .sa-brand {font-size:20px}
+  .sa-nav {gap:12px;font-size:11px}
+  .sa-hero {padding:52px 0 38px}
+  .sa-hero h1 {font-size:49px}
+  .sa-lead {font-size:16px}
+  .sa-outline-nav {gap:12px}
+  .sa-metric {margin:10px 0;padding:18px 9px 20px 0}
+  .sa-metric:not(:first-child) {padding-left:11px}
+  .sa-metric strong {font-size:30px}
+  .sa-metric p {font-size:10px}
+  .sa-section {padding-top:59px}
+  .sa-section-head {display:block}
+  .sa-head-aside {display:none}
+  .sa-matrix-wrap {padding:16px 13px}
+  .sa-two,.sa-recs,.sa-limit {grid-template-columns:1fr}
+  .sa-playbook {overflow-x:auto}
+  .sa-table {min-width:750px}
+  .sa-details {padding:23px 20px}
+  .sa-analysis-card {padding:22px}
+}
+</style>
 </head>
+
 <body>
-  <header class="header">
-    <div class="shell header-in">
-      <a class="brand" href="index.html#home">Precious <em>Diedemise.</em></a>
-      <nav class="nav" style="display:flex;gap:20px;align-items:center"><a href="index.html#work">← Back to work</a><a href="index.html#contact">Contact</a></nav>
+<header class="sa-topbar">
+  <div class="sa-shell">
+    <a class="sa-brand" href="index.html#home">
+      Precious <em>Diedemise.</em>
+    </a>
+    <nav class="sa-nav">
+      <a href="index.html#work">← All work</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="sa-shell">
+
+  <!-- INTRODUCTION -->
+  <section class="sa-hero">
+    <div>
+      <div class="sa-eyebrow">
+        Independent MBA case study · Strategic communication
+      </div>
+      <h1>
+        You Can't Please Everyone.
+        <em>So Who Do You Prioritize?</em>
+      </h1>
+      <p class="sa-lead">
+        Imagine you've been asked to conduct a stakeholder analysis
+        for the Warrensburg Chamber of Commerce. Who deserves
+        the most attention, why, and how should the Chamber
+        engage them?
+      </p>
+      <p class="sa-close">Here's how I'd approach it.</p>
+      <p class="sa-disclosure">
+        An independent academic analysis, not commissioned or
+        endorsed by the Chamber. Recommendations reflect my
+        research and assumptions, not implemented decisions.
+      </p>
     </div>
-  </header>
-  <main class="case-main">
-    <section class="case-top" id="top">
-      <p class="case-kicker">Business strategy · Stakeholder analysis</p>
-      <h1>You Can't Please Everyone. <em>So Who Do You Prioritize?</em></h1>
-      <p class="case-lead">Imagine you've been asked to conduct a stakeholder analysis for the Warrensburg Chamber of Commerce. Who deserves the most attention? What makes them a priority? And how should the Chamber engage them?</p>
-      <p class="case-lead-closer">Here's how I'd approach it.</p>
-      <p class="context">Independent MBA case study. This analysis was not commissioned or endorsed by the Warrensburg Chamber of Commerce. Classifications and recommendations represent my analytical assessment.</p>
-      <nav class="case-navigation" aria-label="Case study sections"><a href="#people">The people</a><a href="#power-interest">Power–Interest Matrix</a><a href="#salience">Salience Model</a><a href="#strategy">The strategy</a><a href="#takeaways">Takeaways</a></nav>
-    </section>
-    <section class="case-section" aria-label="Executive snapshot">
-      <div class="snapshot">
-        <article><span class="mini">Organization</span><strong>Warrensburg</strong><p>Chamber of Commerce</p></article>
-        <article><span class="mini">Scope</span><strong>8</strong><p>Stakeholder groups</p></article>
-        <article><span class="mini">Tools</span><strong>2</strong><p>Analytical frameworks</p></article>
-        <article><span class="mini">Output</span><strong>Strategy</strong><p>Proposed engagement priorities</p></article>
+
+    <div class="sa-hero-art" aria-hidden="true">
+      <span class="sa-art-label">Prioritization overview</span>
+      <div class="sa-art-mid">
+        <strong>08</strong>
+        <small>Stakeholder groups identified</small>
       </div>
-    </section>
-    <section class="case-section" id="people">
-      <div class="case-section-head"><span class="case-number">01 / The people</span><h2>Who has a stake?</h2><p>Eight stakeholder groups identified for this analysis.</p></div>
-      <div class="stakeholder-grid">
-        <div class="stakeholder-tile"><span>↗</span><strong>Member businesses</strong></div>
-        <div class="stakeholder-tile"><span>◇</span><strong>Chamber leadership &amp; staff</strong></div>
-        <div class="stakeholder-tile"><span>○</span><strong>Individual / civic members</strong></div>
-        <div class="stakeholder-tile"><span>＋</span><strong>Prospective business members</strong></div>
-        <div class="stakeholder-tile"><span>⌂</span><strong>Government officials &amp; agencies</strong></div>
-        <div class="stakeholder-tile"><span>◎</span><strong>Warrensburg community</strong></div>
-        <div class="stakeholder-tile"><span>✳</span><strong>UCM students &amp; faculty</strong></div>
-        <div class="stakeholder-tile"><span>∞</span><strong>Sponsors &amp; community partners</strong></div>
-      </div>
-    </section>
-    <section class="case-section" id="power-interest">
-      <div class="case-section-head"><span class="case-number">02 / Prioritization</span><h2>Who gets priority?</h2><p>Rooted in Mendelow's stakeholder analysis work (1981), the Power–Interest Matrix groups stakeholders by their ability to influence an organization and their interest in its activities. The four quadrants suggest different levels of engagement.</p></div>
-      <div class="figure">
-        <div class="figure-heading"><strong>Power–Interest Matrix</strong><span>SELECT A QUADRANT TO EXPLORE</span></div>
-        <div class="matrix-layout">
-          <div class="matrix-figure" role="group" aria-label="Power–Interest Matrix">
-            <div class="vertical-axis"><span>LOW POWER</span><span>HIGH POWER</span></div>
-            <div class="matrix-body"><div class="matrix">
-              <button class="quadrant" data-q="satisfy" aria-pressed="false"><b>Keep Satisfied</b><small>High power · Low interest</small><span class="dot-count">1 stakeholder group</span></button>
-              <button class="quadrant" data-q="manage" aria-pressed="true"><b>Manage Closely</b><small>High power · High interest</small><span class="dot-count">3 stakeholder groups</span></button>
-              <button class="quadrant" data-q="monitor" aria-pressed="false"><b>Monitor</b><small>Low power · Low interest</small><span class="dot-count">2 stakeholder segments</span></button>
-              <button class="quadrant" data-q="inform" aria-pressed="false"><b>Keep Informed</b><small>Low power · High interest</small><span class="dot-count">3 stakeholder segments</span></button>
-            </div><div class="horizontal-axis"><span>LOW INTEREST</span><span>HIGH INTEREST →</span></div></div>
-          </div>
-          <aside class="detail-panel" aria-live="polite" aria-atomic="true"><span class="tiny-label" id="q-level">HIGH POWER · HIGH INTEREST</span><h3 id="q-name">Manage Closely</h3><ul class="mini-list" id="q-people"></ul><div><span class="tiny-label">Why?</span><p id="q-reason"></p></div><div><span class="tiny-label">Recommended approach</span><p id="q-action"></p></div></aside>
+      <div class="sa-art-bottom">
+        <div class="sa-art-bar">
+          <i></i> Manage closely · 3 groups
+        </div>
+        <div class="sa-art-bar">
+          <i></i> Keep satisfied · 1 group
+        </div>
+        <div class="sa-art-bar">
+          <i></i> Inform or monitor · remaining groups
         </div>
       </div>
-      <p class="helper">Note: UCM students and faculty are split by level of Chamber involvement. The eight original stakeholder categories remain unchanged; the matrix uses more detailed segments where helpful. Classifications are reasoned estimates, not survey findings.</p>
-    </section>
-    <section class="case-section" id="salience">
-      <div class="case-section-head"><span class="case-number">03 / Influence</span><h2>What makes a stakeholder matter?</h2><p>Mitchell, Agle, and Wood's Stakeholder Salience Model (1997) considers three attributes that can shape the attention an organization gives a stakeholder.</p></div>
-      <div class="attribute-list"><div class="attribute"><strong>Power</strong><p>Ability to influence organizational decisions.</p></div><div class="attribute"><strong>Legitimacy</strong><p>A recognized or appropriate claim on the organization.</p></div><div class="attribute"><strong>Urgency</strong><p>A claim requiring timely attention.</p></div></div>
-      <div class="figure"><div class="figure-heading"><strong>Explore the classifications</strong><span>SELECT A STAKEHOLDER GROUP</span></div>
-        <div class="salience-layout"><div><label class="select-label" for="stakeholder-choice">Stakeholder group</label><select id="stakeholder-choice"></select><p class="helper">The model classifies stakeholders according to the combination of attributes they possess. These assessments depend on the assumptions in the case.</p></div>
-        <div><div class="attribute-flags"><div class="flag" id="flag-power"><b>✓</b><span>Power</span></div><div class="flag" id="flag-legitimacy"><b>✓</b><span>Legitimacy</span></div><div class="flag" id="flag-urgency"><b>✓</b><span>Urgency</span></div></div><div class="salience-result" aria-live="polite"><span class="tiny-label">Proposed classification</span><h3 id="salience-type"></h3><p id="salience-reason"></p></div></div></div>
+    </div>
+  </section>
+
+  <nav class="sa-outline-nav">
+    <a href="#matrix">01 / Prioritization</a>
+    <a href="#salience">02 / Salience</a>
+    <a href="#playbook">03 / Communication</a>
+    <a href="#recommendations">04 / Recommendations</a>
+  </nav>
+
+  <div class="sa-metrics">
+    <div class="sa-metric">
+      <div class="sa-eyebrow">Scope</div>
+      <strong>08</strong>
+      <p>Distinct stakeholder groups</p>
+    </div>
+    <div class="sa-metric">
+      <div class="sa-eyebrow">Frameworks</div>
+      <strong>02</strong>
+      <p>Power–Interest + Salience</p>
+    </div>
+    <div class="sa-metric">
+      <div class="sa-eyebrow">Output</div>
+      <strong>04</strong>
+      <p>Engagement priorities</p>
+    </div>
+  </div>
+
+  <!-- POWER–INTEREST MATRIX -->
+  <section class="sa-section" id="matrix">
+    <div class="sa-section-head">
+      <div>
+        <div class="sa-number">01 / Prioritization</div>
+        <h2>Who gets priority?</h2>
+        <p>
+          The Power–Interest Matrix groups stakeholders by their
+          influence on an organization and interest in its activities.
+          Each quadrant calls for a different engagement approach.
+          Select a stakeholder to inspect the reasoning.
+        </p>
       </div>
-    </section>
-    <section class="case-section" id="strategy">
-      <div class="case-section-head"><span class="case-number">04 / Action</span><h2>From analysis to action.</h2><p>Each stakeholder group needs a communication approach that reflects its relationship with the Chamber. Filter the proposed playbook by engagement priority.</p></div>
-      <div class="playbook-controls"><div class="filter-row" role="group" aria-label="Filter communication strategies"><button class="filter-btn" data-filter="all" aria-pressed="true">All</button><button class="filter-btn" data-filter="Manage Closely" aria-pressed="false">Manage Closely</button><button class="filter-btn" data-filter="Keep Satisfied" aria-pressed="false">Keep Satisfied</button><button class="filter-btn" data-filter="Keep Informed" aria-pressed="false">Keep Informed</button><button class="filter-btn" data-filter="Monitor" aria-pressed="false">Monitor</button></div></div>
-      <div class="playbook" id="playbook"></div>
-    </section>
-    <section class="case-section" id="takeaways">
-      <div class="case-section-head"><span class="case-number">05 / Recommendations</span><h2>So, what would I recommend?</h2><p>Three practical priorities that follow from the analysis.</p></div>
-      <div class="recommendations">
-        <article><span class="n">01</span><strong>Give key stakeholders a voice.</strong><p>Build regular opportunities for member businesses, leadership, and major partners to provide input.</p></article>
-        <article><span class="n">02</span><strong>Approach prospective members differently.</strong><p>Use membership-focused outreach instead of treating prospective businesses like existing members.</p></article>
-        <article><span class="n">03</span><strong>Revisit the map.</strong><p>Reassess priorities as membership, involvement, partnerships, and organizational circumstances change.</p></article>
+      <span class="sa-head-aside">EXPLORE THE MATRIX ↘</span>
+    </div>
+
+    <div class="sa-workspace">
+      <div class="sa-matrix-wrap">
+        <div class="sa-figure-top">
+          <b>Power–Interest Matrix</b>
+          <span>CLICK A STAKEHOLDER</span>
+        </div>
+
+        <div class="sa-matrix-scroll">
+          <div class="sa-matrix-grid">
+            <div class="sa-yaxis">
+              <span>LOW POWER</span>
+              <span>HIGH POWER</span>
+            </div>
+
+            <div class="sa-matrix-content">
+              <div class="sa-quads">
+                <div class="sa-quad" data-q="satisfy">
+                  <div class="sa-quad-head">
+                    <b>Keep Satisfied</b>
+                    <small>High / Low</small>
+                  </div>
+                  <div class="sa-dots" id="dots-satisfy"></div>
+                </div>
+
+                <div class="sa-quad" data-q="manage">
+                  <div class="sa-quad-head">
+                    <b>Manage Closely</b>
+                    <small>High / High</small>
+                  </div>
+                  <div class="sa-dots" id="dots-manage"></div>
+                </div>
+
+                <div class="sa-quad" data-q="monitor">
+                  <div class="sa-quad-head">
+                    <b>Monitor</b>
+                    <small>Low / Low</small>
+                  </div>
+                  <div class="sa-dots" id="dots-monitor"></div>
+                </div>
+
+                <div class="sa-quad" data-q="inform">
+                  <div class="sa-quad-head">
+                    <b>Keep Informed</b>
+                    <small>Low / High</small>
+                  </div>
+                  <div class="sa-dots" id="dots-inform"></div>
+                </div>
+              </div>
+
+              <div class="sa-xaxis">
+                <span>LOW INTEREST</span>
+                <span>HIGH INTEREST →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="sa-figure-note">
+          Qualitative placement, not numeric scoring.
+          UCM is shown as two engagement segments because participation
+          changes interest; the original analysis still contains
+          eight stakeholder groups.
+        </p>
       </div>
-      <div class="limitations"><strong>What this analysis cannot tell us:</strong> It is based on academic models, publicly available information, and reasoned assumptions rather than stakeholder interviews or direct validation. The recommendations are proposals, not verified practices or implemented results. Frameworks used: Cornelissen (2023), <em>Corporate Communication: A Guide to Theory and Practice</em>; Mitchell, Agle &amp; Wood (1997), stakeholder salience theory.</div>
-    </section>
-    <div class="page-footer"><span>© 2026 Precious Diedemise · Strategy · Analysis · Curiosity</span><a href="index.html#work">← Back to selected work</a></div>
-  </main>
-  <script>
-    const quadrants={
-      satisfy:{name:'Keep Satisfied',level:'HIGH POWER · LOW INTEREST',people:['Government officials & agencies'],reason:'Government decisions, policies, and regulation can significantly affect the Chamber, even when officials have limited interest in everyday operations.',action:'Maintain constructive relationships, share policy-relevant briefings, and consult when decisions affect local businesses.'},
-      manage:{name:'Manage Closely',level:'HIGH POWER · HIGH INTEREST',people:['Member businesses','Chamber leadership & staff','Sponsors & community partners'],reason:'These stakeholders influence the Chamber through governance, membership support, funding, resources, and ongoing organizational involvement.',action:'Use regular dialogue, consultation, and involvement in important decisions.'},
-      monitor:{name:'Monitor',level:'LOW POWER · LOW INTEREST',people:['Warrensburg community','UCM students & faculty without direct involvement'],reason:'Their immediate involvement and influence may be limited, but interest can change when Chamber activities affect them directly.',action:'Share accessible public updates and reassess involvement as needs change.'},
-      inform:{name:'Keep Informed',level:'LOW POWER · HIGH INTEREST',people:['Individual / civic members','Prospective business members','UCM students & faculty actively involved in Chamber programs'],reason:'They have a relevant relationship with Chamber opportunities or activities but generally less influence over its decisions.',action:'Send relevant updates, invite participation, and maintain channels for feedback.'}
+
+      <aside class="sa-details" aria-live="polite">
+        <div class="sa-detail-top">
+          <span class="sa-detail-label">SELECTED STAKEHOLDER</span>
+          <span class="sa-pill" id="sa-priority">Manage closely</span>
+        </div>
+
+        <h3 id="sa-stakeholder">Chamber leadership &amp; staff</h3>
+
+        <div class="sa-attr-mini">
+          <span id="sa-power">High power</span>
+          <span id="sa-interest">High interest</span>
+        </div>
+
+        <div class="sa-detail-sep"></div>
+
+        <div class="sa-detail-block">
+          <div class="sa-detail-label">Why this priority?</div>
+          <p id="sa-rationale"></p>
+        </div>
+
+        <div class="sa-detail-block">
+          <div class="sa-detail-label">Recommended engagement</div>
+          <p id="sa-action"></p>
+        </div>
+
+        <div class="sa-detail-block">
+          <div class="sa-detail-label">What I would validate</div>
+          <p id="sa-validate"></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- STAKEHOLDER SALIENCE -->
+  <section class="sa-section" id="salience">
+    <div class="sa-section-head">
+      <div>
+        <div class="sa-number">02 / Stakeholder salience</div>
+        <h2>Why do certain voices carry weight?</h2>
+        <p>
+          Mitchell, Agle, and Wood's model (1997) considers power,
+          legitimacy, and urgency. Their combination helps explain
+          stakeholder salience.
+        </p>
+      </div>
+    </div>
+
+    <div class="sa-two">
+      <div class="sa-analysis-card">
+        <div class="sa-figure-top">
+          <b>Three signals of salience</b>
+          <span>POWER · LEGITIMACY · URGENCY</span>
+        </div>
+
+        <div class="sa-model-visual">
+          <svg viewBox="0 0 420 310"
+               role="img"
+               aria-label="Stakeholder salience diagram">
+            <circle id="venn-power"
+                    class="sa-venn-circle"
+                    cx="157" cy="124" r="94"
+                    fill="#d9ddd1" opacity=".5"/>
+            <circle id="venn-legitimacy"
+                    class="sa-venn-circle"
+                    cx="263" cy="124" r="94"
+                    fill="#9bab8a" opacity=".55"/>
+            <circle id="venn-urgency"
+                    class="sa-venn-circle"
+                    cx="210" cy="211" r="94"
+                    fill="#eac5a8" opacity=".5"/>
+
+            <text class="sa-venn-label"
+                  x="112" y="86">Power</text>
+            <text class="sa-venn-icon"
+                  id="venn-power-mark"
+                  x="128" y="111">✓</text>
+
+            <text class="sa-venn-label"
+                  x="267" y="86">Legitimacy</text>
+            <text class="sa-venn-icon"
+                  id="venn-legitimacy-mark"
+                  x="300" y="111">✓</text>
+
+            <text class="sa-venn-label"
+                  x="184" y="272">Urgency</text>
+            <text class="sa-venn-icon"
+                  id="venn-urgency-mark"
+                  x="205" y="293">—</text>
+          </svg>
+        </div>
+
+        <p>
+          Select a stakeholder to see which attributes the analysis
+          assigns to it. The circles illustrate attributes,
+          not measured relative strength.
+        </p>
+      </div>
+
+      <div class="sa-analysis-card">
+        <label class="sa-detail-label" for="sa-select">
+          STAKEHOLDER GROUP
+        </label>
+
+        <select class="sa-salience-select" id="sa-select"></select>
+
+        <div class="sa-detail-label">
+          PROPOSED CLASSIFICATION
+        </div>
+        <div class="sa-classification" id="sa-classification">
+          Definitive
+        </div>
+
+        <div class="sa-attributes">
+          <div class="sa-attribute" id="attr-power">
+            <b>✓</b>Power
+          </div>
+          <div class="sa-attribute" id="attr-legitimacy">
+            <b>✓</b>Legitimacy
+          </div>
+          <div class="sa-attribute" id="attr-urgency">
+            <b>✓</b>Urgency
+          </div>
+        </div>
+
+        <p id="sa-salience-reason"></p>
+
+        <p style="margin-top:20px;font-size:11px">
+          Power and influence are context dependent.
+          For example, civic members' possible governance influence
+          doesn't necessarily mean high day-to-day decision-making power.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNICATION PLAYBOOK -->
+  <section class="sa-section" id="playbook">
+    <div class="sa-section-head">
+      <div>
+        <div class="sa-number">03 / From analysis to action</div>
+        <h2>The communication playbook.</h2>
+        <p>
+          Prioritization becomes useful when it changes what the
+          organization does. These proposed actions are matched
+          to stakeholder groups.
+        </p>
+      </div>
+    </div>
+
+    <div class="sa-filter" role="group"
+         aria-label="Filter by engagement priority">
+      <button data-filter="all" aria-pressed="true">All groups</button>
+      <button data-filter="manage" aria-pressed="false">Manage closely</button>
+      <button data-filter="satisfy" aria-pressed="false">Keep satisfied</button>
+      <button data-filter="inform" aria-pressed="false">Keep informed</button>
+      <button data-filter="monitor" aria-pressed="false">Monitor</button>
+    </div>
+
+    <div class="sa-playbook">
+      <table class="sa-table">
+        <thead>
+          <tr>
+            <th>Stakeholder</th>
+            <th>Priority</th>
+            <th>Proposed action</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody id="sa-playbook-body"></tbody>
+      </table>
+    </div>
+
+    <p class="sa-figure-note">
+      UCM participants and the wider campus are treated as
+      separate engagement segments. The recommendations
+      are proposals, not existing Chamber practices.
+    </p>
+  </section>
+
+  <!-- RECOMMENDATIONS -->
+  <section class="sa-section" id="recommendations">
+    <div class="sa-section-head">
+      <div>
+        <div class="sa-number">04 / Strategic recommendations</div>
+        <h2>What would I recommend?</h2>
+        <p>Three practical steps based on the stakeholder analysis.</p>
+      </div>
+    </div>
+
+    <div class="sa-recs">
+      <article class="sa-rec">
+        <span class="sa-rec-number">01</span>
+        <h3>Create consistent dialogue with key players.</h3>
+        <p>
+          Use member forums, regular leadership coordination,
+          and partner check-ins to make engagement two-way.
+        </p>
+      </article>
+
+      <article class="sa-rec">
+        <span class="sa-rec-number">02</span>
+        <h3>Separate prospects from existing members.</h3>
+        <p>
+          Target nonmember entrepreneurs with membership information
+          rather than treating them as current members.
+        </p>
+      </article>
+
+      <article class="sa-rec">
+        <span class="sa-rec-number">03</span>
+        <h3>Revisit the map as relationships change.</h3>
+        <p>
+          Check whether involvement, influence, and policy priorities
+          still support the classifications.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <div class="sa-limit">
+    <div>
+      <strong>Method &amp; assumptions</strong>
+      <p>
+        Independent MBA application of stakeholder analysis
+        frameworks to publicly available organizational context.
+        Classifications were refined after professor feedback.
+        No stakeholder interviews or commissioned research
+        were conducted.
+      </p>
+    </div>
+    <div>
+      <strong>References &amp; limitations</strong>
+      <p>
+        Cornelissen (2023), Corporate Communication;
+        Mitchell, Agle &amp; Wood (1997), Stakeholder Salience;
+        stakeholder mapping associated with Mendelow (1981).
+        Classifications are qualitative judgments, not
+        observed Chamber outcomes.
+      </p>
+    </div>
+  </div>
+
+  <footer class="sa-foot">
+    <span>© 2026 Precious Diedemise · Made with curiosity.</span>
+    <a href="index.html#work">← Back to selected work</a>
+  </footer>
+</main>
+
+<script>
+const stakeholderData = [
+  {
+    id:"leadership",
+    short:"Leadership & staff",
+    name:"Chamber leadership & staff",
+    q:"manage",
+    salience:"Definitive",
+    flags:[1,1,1],
+    reason:"Formal responsibility for operations and decisions creates high involvement and direct organizational influence.",
+    action:"Coordinate through strategy meetings, internal briefings, and collaborative planning.",
+    validate:"Which decisions require board approval, and which responsibilities demand immediate action?",
+    salienceReason:"Formal authority gives leadership power, their roles provide legitimacy, and operational responsibilities can produce urgent matters.",
+    purpose:"Coordinate decisions and respond to organizational priorities."
+  },
+  {
+    id:"business",
+    short:"Member businesses",
+    name:"Chamber member businesses",
+    q:"manage",
+    salience:"Dominant",
+    flags:[1,1,0],
+    reason:"Existing businesses have a direct membership stake. Dues, participation, and collective support can influence Chamber decisions.",
+    action:"Use member forums, surveys, and direct consultation on business needs.",
+    validate:"How active are members in decision-making, and which member groups provide substantial support?",
+    salienceReason:"Membership establishes legitimacy; dues and collective support can provide influence. Urgency is not presumed.",
+    purpose:"Understand member needs and inform relevant decisions."
+  },
+  {
+    id:"partners",
+    short:"Sponsors & partners",
+    name:"Sponsors & community partners",
+    q:"manage",
+    salience:"Dominant",
+    flags:[1,1,0],
+    reason:"Financial support, resources, and shared initiatives can create influence and sustained interest, whether partners are members or not.",
+    action:"Hold partnership check-ins, share sponsorship updates, and invite feedback.",
+    validate:"Which partners are active members, and how much decision-making influence comes from contributions?",
+    salienceReason:"Resources can provide power; formal partnerships create legitimacy. Membership status may vary.",
+    purpose:"Maintain relationships and align expectations."
+  },
+  {
+    id:"government",
+    short:"Government agencies",
+    name:"Government officials & agencies",
+    q:"satisfy",
+    salience:"Dominant",
+    flags:[1,1,0],
+    reason:"Policy and regulatory authority can affect Chamber activities despite relatively limited interest in daily operations.",
+    action:"Provide relevant policy briefings and consult when issues affect local businesses.",
+    validate:"Which agencies are currently involved in Chamber initiatives or local business policy?",
+    salienceReason:"Regulatory authority establishes power and legitimacy. Urgency depends on the issue.",
+    purpose:"Stay connected on policy issues affecting businesses."
+  },
+  {
+    id:"civic",
+    short:"Civic members",
+    name:"Individual / civic members",
+    q:"inform",
+    salience:"Dominant",
+    flags:[1,1,0],
+    reason:"Existing civic members have recognized membership and a strong interest, although individual influence over daily decisions may be limited.",
+    action:"Share member updates, invitations, and ways to provide input.",
+    validate:"What formal voting, committee, or board opportunities are available to individual members?",
+    salienceReason:"Membership provides legitimacy. Potential committee or governance roles support an assumption of power, but this varies by member.",
+    purpose:"Support awareness and continued participation."
+  },
+  {
+    id:"prospects",
+    short:"Prospective members",
+    name:"Prospective business members",
+    q:"inform",
+    salience:"Discretionary",
+    flags:[0,1,0],
+    reason:"Nonmember entrepreneurs may want access to business networks and resources but generally lack formal authority within the Chamber.",
+    action:"Use targeted membership outreach and networking invitations.",
+    validate:"Which prospective members have expressed interest, and what barriers prevent joining?",
+    salienceReason:"Local business interests can support a legitimate claim, while formal influence and urgency are not assumed.",
+    purpose:"Explain membership opportunities and encourage engagement."
+  },
+  {
+    id:"ucmactive",
+    short:"UCM · active",
+    name:"UCM students & faculty (active participants)",
+    q:"inform",
+    salience:"Discretionary",
+    flags:[0,1,0],
+    reason:"Direct participation in Chamber programs creates interest without necessarily conferring decision-making power.",
+    action:"Send program-specific updates and offer opportunities for dialogue.",
+    validate:"Which students and faculty are currently participating in Chamber programs?",
+    salienceReason:"Participation creates a legitimate relationship; formal power and urgency are not assumed.",
+    purpose:"Match outreach to current involvement."
+  },
+  {
+    id:"community",
+    short:"Community residents",
+    name:"Warrensburg community",
+    q:"monitor",
+    salience:"Discretionary",
+    flags:[0,1,0],
+    reason:"Residents may be affected by Chamber work, but many have limited day-to-day influence or engagement.",
+    action:"Share accessible public event information and community updates.",
+    validate:"Are there community concerns or initiatives that could increase interest?",
+    salienceReason:"Chamber activities can affect the community, supporting legitimacy, but individual influence is typically limited.",
+    purpose:"Maintain awareness while avoiding unnecessary outreach."
+  },
+  {
+    id:"ucmgeneral",
+    short:"UCM · wider community",
+    name:"UCM students & faculty (wider campus)",
+    q:"monitor",
+    salience:"Not separately assessed",
+    flags:[0,0,0],
+    reason:"Many students and faculty may have little direct relationship with, or interest in, Chamber activities.",
+    action:"Use occasional broad announcements where relevant; prioritize direct outreach to participants.",
+    validate:"Is there a new Chamber-campus initiative that changes involvement or interest?",
+    salienceReason:"This is a Power–Interest segment, not an additional salience classification.",
+    purpose:"Use outreach proportionate to involvement."
+  }
+];
+
+const byId = Object.fromEntries(
+  stakeholderData.map(s => [s.id,s])
+);
+
+const priorityNames = {
+  manage:"Manage closely",
+  satisfy:"Keep satisfied",
+  inform:"Keep informed",
+  monitor:"Monitor"
+};
+
+const $ = id => document.getElementById(id);
+
+function setText(id,value) {
+  $(id).textContent = value;
+}
+
+function make(tag,content,className) {
+  const el = document.createElement(tag);
+  if(content !== undefined) el.textContent = content;
+  if(className) el.className = className;
+  return el;
+}
+
+/* BUILD CLICKABLE STAKEHOLDERS */
+stakeholderData.forEach(s => {
+  const btn = make("button",undefined,"sa-dot");
+  btn.type = "button";
+  btn.dataset.stakeholder = s.id;
+  btn.setAttribute("aria-pressed","false");
+  btn.setAttribute("aria-label","Inspect " + s.name);
+
+  const marker = make("i","");
+  btn.append(marker,document.createTextNode(s.short));
+
+  btn.addEventListener("click",() => selectStakeholder(s.id));
+  $("dots-" + s.q).append(btn);
+});
+
+/* UPDATE STAKEHOLDER PROFILE */
+function selectStakeholder(id) {
+  const s = byId[id];
+
+  document.querySelectorAll(".sa-dot").forEach(btn => {
+    btn.setAttribute(
+      "aria-pressed",
+      String(btn.dataset.stakeholder === id)
+    );
+  });
+
+  setText("sa-priority",priorityNames[s.q]);
+  setText("sa-stakeholder",s.name);
+  setText("sa-power",
+    s.q === "manage" || s.q === "satisfy"
+      ? "High power" : "Low power"
+  );
+  setText("sa-interest",
+    s.q === "manage" || s.q === "inform"
+      ? "High interest" : "Low interest"
+  );
+  setText("sa-rationale",s.reason);
+  setText("sa-action",s.action);
+  setText("sa-validate",s.validate);
+
+  $("sa-select").value = s.id;
+  showSalience();
+}
+
+/* SALIENCE SELECTOR */
+stakeholderData.forEach(s => {
+  const opt = make("option",s.name);
+  opt.value = s.id;
+  $("sa-select").append(opt);
+});
+
+function showSalience() {
+  const s = byId[$("sa-select").value];
+  setText("sa-classification",s.salience);
+  setText("sa-salience-reason",s.salienceReason);
+
+  ["power","legitimacy","urgency"].forEach((name,i) => {
+    const active = !!s.flags[i];
+    const el = $("attr-" + name);
+
+    el.classList.toggle("is-active",active);
+    el.querySelector("b").textContent = active ? "✓" : "—";
+
+    const colors = {
+      power:"#b6c2aa",
+      legitimacy:"#91a681",
+      urgency:"#e6ac86"
     };
-    function showQuadrant(id){const q=quadrants[id];document.querySelectorAll('.quadrant').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.q===id)));document.getElementById('q-name').textContent=q.name;document.getElementById('q-level').textContent=q.level;document.getElementById('q-reason').textContent=q.reason;document.getElementById('q-action').textContent=q.action;const list=document.getElementById('q-people');list.replaceChildren(...q.people.map(p=>{const li=document.createElement('li');li.textContent=p;return li}));}
-    document.querySelectorAll('.quadrant').forEach(btn=>btn.addEventListener('click',()=>showQuadrant(btn.dataset.q)));showQuadrant('manage');
-    const stakeholders=[
-      {name:'Member businesses',attributes:[1,1,0],type:'Dominant',reason:'Their membership relationship gives them legitimacy, while dues, participation, and collective support can influence the Chamber.'},
-      {name:'Chamber leadership & staff',attributes:[1,1,1],type:'Definitive',reason:'Their organizational roles carry authority, legitimacy, and responsibilities that can require immediate decisions.'},
-      {name:'Individual / civic members',attributes:[1,1,0],type:'Dominant',reason:'They are existing members with legitimate claims. Their power is assumed to derive from potential voting, committee, and leadership roles; influence varies among individuals.'},
-      {name:'Prospective business members',attributes:[0,1,0],type:'Discretionary',reason:'Nonmember entrepreneurs may have a legitimate interest in local business development but typically lack direct decision-making power within the Chamber.'},
-      {name:'Government officials & agencies',attributes:[1,1,0],type:'Dominant',reason:'Government bodies have recognized policy or regulatory authority that can influence Chamber activities.'},
-      {name:'Warrensburg community',attributes:[0,1,0],type:'Discretionary',reason:'The community can be affected by Chamber activities, creating a legitimate interest despite limited individual influence.'},
-      {name:'UCM students & faculty',attributes:[0,1,0],type:'Discretionary',reason:'Those participating in Chamber-related activities have a legitimate relationship. Their interest varies considerably with involvement.'},
-      {name:'Sponsors & community partners',attributes:[1,1,0],type:'Dominant',reason:'Sponsors and partners may be Chamber members or nonmembers. Contributions, resources, and recognized partnerships can give them power and legitimacy.'}
-    ];
-    const choice=document.getElementById('stakeholder-choice');stakeholders.forEach((x,i)=>{const opt=document.createElement('option');opt.value=String(i);opt.textContent=x.name;choice.append(opt)});
-    function showSalience(){const s=stakeholders[Number(choice.value)];['power','legitimacy','urgency'].forEach((name,i)=>{const el=document.getElementById('flag-'+name);el.classList.toggle('active',!!s.attributes[i]);el.querySelector('b').textContent=s.attributes[i]?'✓':'–'});document.getElementById('salience-type').textContent=s.type+' stakeholder';document.getElementById('salience-reason').textContent=s.reason;}
-    choice.value='1';choice.addEventListener('change',showSalience);showSalience();
-    const strategies=[
-      {group:'Chamber leadership & staff',priority:'Manage Closely',action:'Strategy meetings, internal briefings, collaborative planning',purpose:'Coordinate decisions and respond to organizational priorities.'},
-      {group:'Member businesses',priority:'Manage Closely',action:'Member forums, surveys, direct consultation',purpose:'Understand business needs and involve members in relevant decisions.'},
-      {group:'Sponsors & community partners',priority:'Manage Closely',action:'Partnership meetings, sponsorship updates, feedback sessions',purpose:'Maintain relationships and align expectations.'},
-      {group:'Government officials & agencies',priority:'Keep Satisfied',action:'Policy briefings, scheduled meetings, direct outreach',purpose:'Stay connected on policies affecting local businesses.'},
-      {group:'Individual / civic members',priority:'Keep Informed',action:'Member newsletters, invitations, opportunities for feedback',purpose:'Support awareness and continued participation.'},
-      {group:'Prospective business members',priority:'Keep Informed',action:'Targeted membership outreach, networking invitations',purpose:'Explain membership value and encourage participation.'},
-      {group:'UCM students & faculty',priority:'Keep Informed',action:'Program updates for active participants; broad announcements when relevant',purpose:'Match communication frequency to actual interest and involvement.'},
-      {group:'Warrensburg community',priority:'Monitor',action:'Public event information, community announcements, website updates',purpose:'Maintain awareness without unnecessary outreach.'}
-    ];
-    const playbook=document.getElementById('playbook');
-    function node(tag,cls,content){const el=document.createElement(tag);if(cls)el.className=cls;el.textContent=content;return el}
-    function playCard(s){const article=node('article','playbook-card','');const heading=document.createElement('div');heading.append(node('span','mode',s.priority),node('h3','',s.group));article.append(heading);for(const [label,val] of [['Recommended action',s.action],['Strategic purpose',s.purpose]]){const wrap=document.createElement('div');wrap.append(node('dt','',label),node('dd','',val));article.append(wrap)}return article}
-    function renderPlaybook(filter){document.querySelectorAll('.filter-btn').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===filter)));playbook.replaceChildren(...strategies.filter(s=>filter==='all'||s.priority===filter).map(playCard))}
-    document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>renderPlaybook(b.dataset.filter)));renderPlaybook('all');
-  </script>
+
+    $("venn-" + name).setAttribute(
+      "fill",active ? colors[name] : "#d9d6cc"
+    );
+    $("venn-" + name).setAttribute(
+      "opacity",active ? ".75" : ".23"
+    );
+    setText("venn-" + name + "-mark",active ? "✓" : "—");
+  });
+}
+
+$("sa-select").addEventListener("change",function() {
+  selectStakeholder(this.value);
+});
+
+/* FILTERABLE COMMUNICATION PLAYBOOK */
+function renderPlaybook(filter) {
+  document.querySelectorAll(".sa-filter button").forEach(btn => {
+    btn.setAttribute(
+      "aria-pressed",
+      String(btn.dataset.filter === filter)
+    );
+  });
+
+  const rows = stakeholderData
+    .filter(s => filter === "all" || s.q === filter)
+    .map(s => {
+      const tr = make("tr");
+      [
+        s.name,
+        priorityNames[s.q],
+        s.action,
+        s.purpose
+      ].forEach(value => {
+        tr.append(make("td",value));
+      });
+      return tr;
+    });
+
+  $("sa-playbook-body").replaceChildren(...rows);
+}
+
+document.querySelectorAll(".sa-filter button").forEach(btn => {
+  btn.addEventListener("click",() => {
+    renderPlaybook(btn.dataset.filter);
+  });
+});
+
+/* INITIALIZE */
+selectStakeholder("leadership");
+renderPlaybook("all");
+</script>
 </body>
 </html>
