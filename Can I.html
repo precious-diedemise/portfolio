@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f8f4eb">
+  <meta name="description" content="How Can I? evolved from a decision-comparison idea into an evolving student finance tool. A product development case study by Precious Diedemise.">
+  <title>Can I? | Behind the Product · Precious Diedemise</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root{--cream:#f8f4eb;--paper:#fffdf7;--ink:#302e28;--muted:#6b665d;--rust:#aa593e;--deep:#82432f;--olive:#667052;--line:#dfd9cb;--sage:#e8e9da;--tan:#f0e3d2}
+    .ci-page{max-width:1060px;margin:auto;padding:0 30px 80px}
+    .ci-hero{padding:68px 0 54px;border-bottom:1px solid var(--line)}
+    .ci-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--olive);font-weight:700}
+    .ci-hero h1,.ci-section h2{font-family:'DM Serif Display',Georgia,serif;font-weight:400;letter-spacing:-1.2px}
+    .ci-hero h1{font-size:clamp(45px,6vw,78px);line-height:1.1;margin:14px 0 24px}
+    .ci-hero h1 em{font-style:normal;color:var(--rust)}
+    .ci-lead{font-size:clamp(17px,2vw,21px);max-width:740px;color:#565047;line-height:1.65;margin:0 0 23px}
+    .ci-status{display:inline-flex;align-items:center;gap:8px;background:#e6e8d9;padding:7px 13px;border-radius:100px;color:#4d5c40;font-size:12px;font-weight:700}
+    .ci-status:before{content:'';display:block;width:7px;height:7px;border-radius:50%;background:var(--olive)}
+    .ci-note{color:var(--muted);font-size:12px;max-width:780px;margin:20px 0 0}
+    .ci-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+    .ci-link{display:inline-flex;align-items:center;justify-content:center;padding:12px 19px;border:1px solid var(--rust);border-radius:9px;color:var(--deep);font-size:13px;font-weight:700;text-decoration:none}
+    .ci-link:hover{background:#f0e6d7}
+    .ci-section{padding:55px 0 18px}
+    .ci-count{font-size:11px;letter-spacing:.14em;color:var(--olive);text-transform:uppercase;font-weight:700}
+    .ci-section h2{font-size:clamp(31px,4vw,46px);margin:8px 0 14px}
+    .ci-copy{max-width:720px;color:#625c53;line-height:1.75;font-size:15px}
+    .ci-journey{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}
+    .ci-stage,.ci-tile{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:23px}
+    .ci-stage{position:relative;min-height:190px}
+    .ci-stage .ci-digit{font:400 32px 'DM Serif Display',Georgia,serif;color:var(--rust)}
+    .ci-stage h3{font-size:16px;margin:9px 0 7px}
+    .ci-stage p{font-size:13px;color:var(--muted);margin:0}
+    .ci-tile h3{font-size:16px;margin:4px 0 8px}
+    .ci-tile p{font-size:13px;color:var(--muted);margin:0;line-height:1.65}
+    .ci-stage:not(:last-child):after{content:'→';position:absolute;right:-15px;top:44%;font-size:23px;color:var(--rust);z-index:1}
+    .ci-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:20px}
+    .ci-eyeline{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive)}
+    .ci-feedback{margin-top:22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+    .ci-feedback details{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:19px 21px}
+    .ci-feedback summary{font-weight:700;font-size:14px;cursor:pointer;list-style-position:outside}
+    .ci-feedback details p{font-size:13px;color:var(--muted);margin:13px 0 3px;line-height:1.65}
+    .ci-feedback strong{color:var(--ink)}
+    .ci-next{display:flex;flex-wrap:wrap;gap:9px;margin-top:19px}
+    .ci-chip{background:#ede8dc;padding:10px 15px;border-radius:100px;font-size:12px;color:#5f594e}
+    .ci-disclaimer{margin-top:21px;padding:20px 23px;background:#ebecdf;border-radius:12px;font-size:13px;color:#525a4b;line-height:1.7}
+    .ci-footer{padding:30px 0;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    @media(max-width:720px){.ci-page{padding:0 20px 50px}.ci-journey,.ci-grid,.ci-feedback{grid-template-columns:1fr}.ci-stage:not(:last-child):after{content:'↓';right:auto;left:50%;top:auto;bottom:-19px}.ci-hero{padding:46px 0}}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="shell header-in">
+      <a class="brand" href="index.html#home">Precious <em>Diedemise.</em></a>
+      <nav class="nav" style="display:flex;gap:20px">
+        <a href="index.html#work">← Back to work</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="ci-page">
+    <section class="ci-hero">
+      <div class="ci-eyebrow">Product development · Financial decision-making</div>
+      <h1>Can I? <em>Before I do.</em></h1>
+      <p class="ci-lead">
+        I wanted a way to see how a money decision might play out before
+        actually making it. That question became Can I?, a student-focused
+        tool that is still taking shape.
+      </p>
+      <span class="ci-status">Work in progress · Actively evolving</span>
+      <div class="ci-actions">
+        <a class="ci-link" href="https://can-i-phi.vercel.app/"
+           target="_blank" rel="noopener noreferrer">Try the current prototype ↗</a>
+        <a class="ci-link" href="#evolution">See the process ↓</a>
+      </div>
+      <p class="ci-note">
+        An independent product project. This page documents decisions and
+        ongoing testing, not a finished commercial product.
+      </p>
+    </section>
+
+    <section class="ci-section" id="evolution">
+      <div class="ci-count">01 / The product evolution</div>
+      <h2>The idea changed. The goal didn't.</h2>
+      <p class="ci-copy">
+        Can I? started as a way to compare financial decisions. As I worked
+        through the experience, organizing the numbers became the necessary
+        first step. You need to understand your money before comparing what
+        to do with it.
+      </p>
+      <div class="ci-journey">
+        <div class="ci-stage">
+          <div class="ci-digit">01</div>
+          <h3>Start with a question</h3>
+          <p>What happens if I pay this debt, save this amount, or make this purchase?</p>
+        </div>
+        <div class="ci-stage">
+          <div class="ci-digit">02</div>
+          <h3>Organize the picture</h3>
+          <p>Bring available money, obligations, savings, subscriptions,
+             and expected income into view.</p>
+        </div>
+        <div class="ci-stage">
+          <div class="ci-digit">03</div>
+          <h3>Compare the choices</h3>
+          <p>Test different allocations and see how each decision changes
+             the financial picture.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ci-section" id="thinking">
+      <div class="ci-count">02 / Product decisions</div>
+      <h2>Designing for real decisions.</h2>
+      <div class="ci-grid">
+        <div class="ci-tile">
+          <div class="ci-eyeline">Decision 01</div>
+          <h3>Context before comparison</h3>
+          <p>Financial inputs come first, so a comparison isn't made in isolation.</p>
+        </div>
+        <div class="ci-tile">
+          <div class="ci-eyeline">Decision 02</div>
+          <h3>Make the options meaningful</h3>
+          <p>If the goal is to reduce debt, suggested allocations should
+             reflect that goal, not arbitrarily leave all the money untouched.</p>
+        </div>
+        <div class="ci-tile">
+          <div class="ci-eyeline">Decision 03</div>
+          <h3>Reduce unnecessary effort</h3>
+          <p>Shorter labels, fewer confusing choices, and sample numbers
+             to make the experience easier to explore.</p>
+        </div>
+        <div class="ci-tile">
+          <div class="ci-eyeline">Decision 04</div>
+          <h3>Keep the financial picture connected</h3>
+          <p>Explore how money on hand, incoming funds, bills, debts,
+             and planned spending relate to one another.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ci-section" id="feedback">
+      <div class="ci-count">03 / Testing and iteration</div>
+      <h2>You test. You learn. You change things.</h2>
+      <p class="ci-copy">
+        Early testing surfaced questions about the language, what counts
+        as available money, and whether suggested allocations actually
+        respected a user's goal. Those questions are shaping the next iterations.
+      </p>
+      <div class="ci-feedback">
+        <details>
+          <summary>Confusing financial labels</summary>
+          <p><strong>What surfaced:</strong> Some terms, including “Protected,”
+             weren't intuitive.<br>
+             <strong>Design response:</strong> Use clearer language such as
+             “Savings” and simplify prompts.</p>
+        </details>
+        <details>
+          <summary>Options that miss the goal</summary>
+          <p><strong>What surfaced:</strong> Debt-focused comparisons could
+             suggest keeping money available instead of paying down debt.<br>
+             <strong>Design response:</strong> Rework suggested allocations
+             around the user's stated goal.</p>
+        </details>
+        <details>
+          <summary>Too much to process</summary>
+          <p><strong>What surfaced:</strong> Wordy screens and numerous inputs
+             could make decisions harder.<br>
+             <strong>Design response:</strong> Shorter copy, more focused steps,
+             and fewer unnecessary fields.</p>
+        </details>
+        <details>
+          <summary>Missing financial context</summary>
+          <p><strong>What surfaced:</strong> Feedback called for better handling
+             of recurring bills, subscriptions, unexpected expenses, and
+             incoming money.<br>
+             <strong>Design response:</strong> Evaluate how these elements fit
+             into the organizing flow without overcomplicating it.</p>
+        </details>
+      </div>
+      <p class="ci-note">
+        These are summarized themes from development conversations and early
+        feedback, not verbatim testimonial quotes. Responses and revisions
+        remain ongoing.
+      </p>
+    </section>
+
+    <section class="ci-section" id="next">
+      <div class="ci-count">04 / What's next</div>
+      <h2>Still figuring things out.</h2>
+      <p class="ci-copy">
+        The next challenge is keeping the financial overview useful
+        without making the tool feel like another complicated budgeting app.
+      </p>
+      <div class="ci-next">
+        <span class="ci-chip">Clearer comparison results</span>
+        <span class="ci-chip">Simpler input flow</span>
+        <span class="ci-chip">Recurring payments &amp; subscriptions</span>
+        <span class="ci-chip">Saved financial activity</span>
+        <span class="ci-chip">Continued user testing</span>
+      </div>
+      <div class="ci-disclaimer">
+        <strong>Project status:</strong> Can I? is an evolving prototype.
+        The current app may differ from the ideas or work-in-progress features
+        described here. No claims are made about improved financial outcomes
+        or validated product effectiveness.
+      </div>
+      <div class="ci-actions">
+        <a class="ci-link" href="https://can-i-phi.vercel.app/"
+           target="_blank" rel="noopener noreferrer">Explore Can I? ↗</a>
+      </div>
+    </section>
+
+    <footer class="ci-footer">
+      <span>© 2026 Precious Diedemise · Made with curiosity.</span>
+      <a href="index.html#work">Back to selected work ↑</a>
+    </footer>
+  </main>
+</body>
+</html>
